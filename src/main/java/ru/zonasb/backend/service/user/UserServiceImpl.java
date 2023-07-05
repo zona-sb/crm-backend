@@ -6,7 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.zonasb.backend.dto.UserDto;
-import ru.zonasb.backend.model.User;
+import ru.zonasb.backend.model.people.User;
 import ru.zonasb.backend.repository.UserRepository;
 
 import java.util.List;
