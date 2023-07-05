@@ -27,11 +27,13 @@ import ru.zonasb.backend.config.filter.JWTAuthorizationFilter;
 import java.util.List;
 
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
+import static ru.zonasb.backend.controller.UserController.USER_CONTROLLER_PATH;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity()
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     public static final String LOGIN = "/login";
@@ -45,21 +47,19 @@ public class SecurityConfig {
 
     private final UserDetailsService userDetailsService;
     private final JWTHelper jwtHelper;
-    private final String baseUrl;
     private final RequestMatcher loginRequest;
     private final RequestMatcher publicUrls;
 
     public SecurityConfig(@Value("${base-url}") final String baseUrl,
                           final UserDetailsService userDetailsService,
                           final JWTHelper jwtHelper) {
-        this.baseUrl = baseUrl;
         this.userDetailsService = userDetailsService;
         this.jwtHelper = jwtHelper;
         this.loginRequest = new AntPathRequestMatcher(baseUrl + LOGIN, POST.toString());
         this.publicUrls = new OrRequestMatcher(
                 loginRequest,
-//                new AntPathRequestMatcher(baseUrl + USER_CONTROLLER_PATH, POST.toString()),
-//                new AntPathRequestMatcher(baseUrl + USER_CONTROLLER_PATH, GET.toString()),
+                new AntPathRequestMatcher(baseUrl + USER_CONTROLLER_PATH, POST.toString()),
+                new AntPathRequestMatcher(baseUrl + USER_CONTROLLER_PATH, GET.toString()),
                 new NegatedRequestMatcher(new AntPathRequestMatcher(baseUrl + "/**"))
         );
     }
@@ -98,9 +98,11 @@ public class SecurityConfig {
                 .addFilterBefore(
                         new JWTAuthorizationFilter(publicUrls, jwtHelper),
                         UsernamePasswordAuthenticationFilter.class
-                ).formLogin().disable().sessionManagement().disable().logout().disable();
+                )
+                .formLogin().disable()
+                .sessionManagement().disable()
+                .logout().disable();
 
         return http.build();
     }
 }
-

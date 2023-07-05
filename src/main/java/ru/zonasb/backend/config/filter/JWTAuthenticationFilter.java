@@ -10,11 +10,11 @@ import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import ru.zonasb.backend.config.component.JWTHelper;
+import ru.zonasb.backend.dto.LoginDto;
 
 
 import java.io.IOException;
@@ -26,6 +26,8 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
     private static final ObjectMapper MAPPER = new ObjectMapper();
 
     private final JWTHelper jwtHelper;
+
+
 
     public JWTAuthenticationFilter(final AuthenticationManager authenticationManager,
                                    final RequestMatcher loginRequest,
@@ -44,10 +46,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
                 loginData.getPassword()
         );
         setDetails(request, authRequest);
-
-        var authentication = getAuthenticationManager().authenticate(authRequest);
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        return authentication;
+        return getAuthenticationManager().authenticate(authRequest);
     }
 
     private LoginDto getLoginData(final HttpServletRequest request) throws AuthenticationException {
@@ -60,6 +59,7 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
             throw new BadCredentialsException("Can't extract login data from request");
         }
     }
+
     @Override
     protected void successfulAuthentication(final HttpServletRequest request,
                                             final HttpServletResponse response,
@@ -68,6 +68,6 @@ public class JWTAuthenticationFilter extends UsernamePasswordAuthenticationFilte
         final UserDetails user = (UserDetails) authResult.getPrincipal();
         final String token = jwtHelper.expiring(Map.of(SPRING_SECURITY_FORM_USERNAME_KEY, user.getUsername()));
 
-        response.getWriter().print(token);
+        response.getWriter().println(token);
     }
 }

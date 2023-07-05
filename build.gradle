@@ -89,9 +89,9 @@ liquibase {
 			changelogFile 'src/main/resources/db/changelog/db.changelog-master.yaml'
 			// Указывем источник, с которым будут сравниваться изменения
 			// Это база данных, изначально она пустая
-			url 'jdbc:h2:./taskManager'
+			url 'jdbc:h2:./zonasb'
 			// Сравниваем с моделями, задавая пакет
-			referenceUrl 'hibernate:spring:io.hexlet.javaspringblog.model.' +
+			referenceUrl 'hibernate:spring:ru.zonasb.backend.model.' +
 					// Указываем диалект
 					'?dialect=org.hibernate.dialect.H2Dialect' +
 					// Указываем правила именования таблиц и столбцов,
