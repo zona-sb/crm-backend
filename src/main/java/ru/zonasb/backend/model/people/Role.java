@@ -1,4 +1,4 @@
-package ru.zonasb.backend.model;
+package ru.zonasb.backend.model.people;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
@@ -29,6 +29,5 @@ public class Role {
     @JsonIgnore
     @OneToMany(mappedBy = "role")
     private List<User> users;
-
 }
 
