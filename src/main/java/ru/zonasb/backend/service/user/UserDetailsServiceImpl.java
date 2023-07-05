@@ -6,7 +6,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import ru.zonasb.backend.model.people.User;
+import ru.zonasb.backend.model.User;
 import ru.zonasb.backend.repository.UserRepository;
 
 import static ru.zonasb.backend.config.security.SecurityConfig.DEFAULT_AUTHORITIES;

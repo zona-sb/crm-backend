@@ -4,8 +4,8 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import ru.zonasb.backend.dto.people.UserDto;
-import ru.zonasb.backend.model.people.User;
+import ru.zonasb.backend.dto.UserDto;
+import ru.zonasb.backend.model.User;
 import ru.zonasb.backend.service.user.UserService;
 
 import java.util.List;

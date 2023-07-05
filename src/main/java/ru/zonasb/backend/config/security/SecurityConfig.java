@@ -27,13 +27,13 @@ import ru.zonasb.backend.config.filter.JWTAuthorizationFilter;
 import java.util.List;
 
 
+import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
-import static ru.zonasb.backend.controller.RegistrationController.REGISTRATION_CONTROLLER_PATH;
-
+import static ru.zonasb.backend.controller.UserController.USER_CONTROLLER_PATH;
 
 @Configuration
 @EnableWebSecurity
-@EnableMethodSecurity()
+@EnableMethodSecurity(prePostEnabled = true)
 public class SecurityConfig {
 
     public static final String LOGIN = "/login";
@@ -58,7 +58,8 @@ public class SecurityConfig {
         this.loginRequest = new AntPathRequestMatcher(baseUrl + LOGIN, POST.toString());
         this.publicUrls = new OrRequestMatcher(
                 loginRequest,
-                new AntPathRequestMatcher(baseUrl + REGISTRATION_CONTROLLER_PATH, POST.toString()),
+                new AntPathRequestMatcher(baseUrl + USER_CONTROLLER_PATH, POST.toString()),
+                new AntPathRequestMatcher(baseUrl + USER_CONTROLLER_PATH, GET.toString()),
                 new NegatedRequestMatcher(new AntPathRequestMatcher(baseUrl + "/**"))
         );
     }
