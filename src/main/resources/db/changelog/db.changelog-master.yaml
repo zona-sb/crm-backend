@@ -1,0 +1,59 @@
+
+
+databaseChangeLog:
+- changeSet:
+    id: 1688554403301-1
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: user_dataPK
+            name: id
+            type: BIGINT
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            name: password
+            type: VARCHAR(255)
+        - column:
+            name: role_id
+            type: BIGINT
+        tableName: user_data
+- changeSet:
+    id: 1688554403301-2
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: user_rolePK
+            name: id
+            type: BIGINT
+        - column:
+            name: title
+            type: VARCHAR(255)
+        tableName: user_role
+- changeSet:
+    id: 1688554403301-3
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role_id
+        baseTableName: user_data
+        constraintName: FKfp63ribrjglab7rpu8oggiuqh
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user_role
+        validate: true
+

@@ -1,7 +1,7 @@
 plugins {
 	id 'application'
 	id 'java'
-	id 'org.springframework.boot' version '3.1.1'
+	id 'org.springframework.boot' version '3.0.6'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'com.github.ben-manes.versions' version '0.38.0'
 	id 'org.liquibase.gradle' version '2.2.0'
@@ -89,9 +89,9 @@ liquibase {
 			changelogFile 'src/main/resources/db/changelog/db.changelog-master.yaml'
 			// Указывем источник, с которым будут сравниваться изменения
 			// Это база данных, изначально она пустая
-			url 'jdbc:h2:./taskManager'
+			url 'jdbc:h2:./zonasb'
 			// Сравниваем с моделями, задавая пакет
-			referenceUrl 'hibernate:spring:io.hexlet.javaspringblog.model.' +
+			referenceUrl 'hibernate:spring:ru.zonasb.backend.model.' +
 					// Указываем диалект
 					'?dialect=org.hibernate.dialect.H2Dialect' +
 					// Указываем правила именования таблиц и столбцов,
