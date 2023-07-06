@@ -22,7 +22,7 @@ public class UserServiceImpl implements UserService{
 
 
     @Override
-    public User getUserById(long id) {
+    public User getUserById(final long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new NoSuchElementException("user with that id is not found"));
     }
