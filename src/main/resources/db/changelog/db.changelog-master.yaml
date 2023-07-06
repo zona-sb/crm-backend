@@ -1,0 +1,327 @@
+databaseChangeLog:
+- changeSet:
+    id: 1688651958158-1
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: clientPK
+            name: id
+            type: BIGINT
+        - column:
+            name: comment
+            type: VARCHAR(255)
+        - column:
+            name: company
+            type: VARCHAR(255)
+        - column:
+            name: person_id
+            type: BIGINT
+        tableName: client
+- changeSet:
+    id: 1688651958158-2
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: managerPK
+            name: id
+            type: BIGINT
+        - column:
+            name: person_id
+            type: BIGINT
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: manager
+- changeSet:
+    id: 1688651958158-3
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: personPK
+            name: id
+            type: BIGINT
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            name: name
+            type: VARCHAR(255)
+        - column:
+            name: phone
+            type: VARCHAR(255)
+        tableName: person
+- changeSet:
+    id: 1688651958158-4
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: priorityPK
+            name: id
+            type: BIGINT
+        - column:
+            name: color
+            type: VARCHAR(255)
+        - column:
+            name: title
+            type: VARCHAR(255)
+        tableName: priority
+- changeSet:
+    id: 1688651958158-5
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: statusPK
+            name: id
+            type: BIGINT
+        - column:
+            name: title
+            type: VARCHAR(255)
+        - column:
+            name: operation_number
+            type: INT
+        - column:
+            name: address
+            type: VARCHAR(255)
+        - column:
+            name: comment
+            type: VARCHAR(255)
+        - column:
+            name: communicateion_date
+            type: TIMESTAMP(6)
+        - column:
+            name: client_id
+            type: BIGINT
+        - column:
+            name: manager_id
+            type: BIGINT
+        - column:
+            name: priority_id
+            type: BIGINT
+        - column:
+            name: status_id
+            type: BIGINT
+        tableName: status
+- changeSet:
+    id: 1688651958158-6
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: user_dataPK
+            name: id
+            type: BIGINT
+        - column:
+            name: email
+            type: VARCHAR(255)
+        - column:
+            name: password
+            type: VARCHAR(255)
+        - column:
+            name: role_id
+            type: BIGINT
+        tableName: user_data
+- changeSet:
+    id: 1688651958158-7
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: user_rolePK
+            name: id
+            type: BIGINT
+        - column:
+            name: title
+            type: VARCHAR(255)
+        tableName: user_role
+- changeSet:
+    id: 1688651958158-8
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: workerPK
+            name: id
+            type: BIGINT
+        - column:
+            name: person_id
+            type: BIGINT
+        - column:
+            name: user_id
+            type: BIGINT
+        tableName: worker
+- changeSet:
+    id: 1688651958158-9
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: client_id
+        baseTableName: status
+        constraintName: FK1cauhuv0lfa723kbterktgspk
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: client
+        validate: true
+- changeSet:
+    id: 1688651958158-10
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: manager_id
+        baseTableName: status
+        constraintName: FK1fqexkhis4ini4k5x9otduq7q
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: manager
+        validate: true
+- changeSet:
+    id: 1688651958158-11
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: manager
+        constraintName: FK5q3bciuhjfknixmnuth4j4klh
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user_data
+        validate: true
+- changeSet:
+    id: 1688651958158-12
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: priority_id
+        baseTableName: status
+        constraintName: FK8ff7gpcschwtrsiipl5k66byv
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: priority
+        validate: true
+- changeSet:
+    id: 1688651958158-13
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: role_id
+        baseTableName: user_data
+        constraintName: FKfp63ribrjglab7rpu8oggiuqh
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user_role
+        validate: true
+- changeSet:
+    id: 1688651958158-14
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: status_id
+        baseTableName: status
+        constraintName: FKjdymer53u0cm5r4a6eegscymp
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: status
+        validate: true
+- changeSet:
+    id: 1688651958158-15
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: person_id
+        baseTableName: client
+        constraintName: FKkxflpsue6s9kscgmuwt7ob1f3
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: person
+        validate: true
+- changeSet:
+    id: 1688651958158-16
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: user_id
+        baseTableName: worker
+        constraintName: FKok1jn1fu91y4hfndegyw6ajql
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: user_data
+        validate: true
+- changeSet:
+    id: 1688651958158-17
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: person_id
+        baseTableName: worker
+        constraintName: FKsh7tqqgss5mf7w6jfoapj08hj
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: person
+        validate: true
+- changeSet:
+    id: 1688651958158-18
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: person_id
+        baseTableName: manager
+        constraintName: FKst25mgx4wvccdaqwk6bi22v7s
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: person
+        validate: true
+
