@@ -3,7 +3,7 @@ package ru.zonasb.backend.service.role;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.zonasb.backend.dto.people.RoleDto;
+import ru.zonasb.backend.dto.RoleDto;
 import ru.zonasb.backend.model.people.Role;
 import ru.zonasb.backend.repository.RoleRepository;
 
@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 @Transactional
 @AllArgsConstructor
 public class RoleServiceImpl implements RoleService{
-    private final RoleRepository roleRepository;
+    private RoleRepository roleRepository;
     @Override
     public Role getRoleById(final long id) {
         return roleRepository.findById(id)
