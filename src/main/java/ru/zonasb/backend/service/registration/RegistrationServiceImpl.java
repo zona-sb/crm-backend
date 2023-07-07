@@ -26,19 +26,15 @@ public class RegistrationServiceImpl implements RegistrationService{
 
     @Override
     public RegistrationDto registrationNewManager(final RegistrationDto registrationDto) {
-        if (userRepository.findByEmail(registrationDto.getEmail()).isPresent()) {
-            throw new IllegalArgumentException("user with that email already exist");
-        }
-
         Role role = roleService.getRoleByTitle("Менеджер");
+
 
         User user = User.builder()
                 .email(registrationDto.getEmail())
                 .password(passwordEncoder.encode(registrationDto.getPassword()))
                 .role(role)
                 .build();
-        userRepository.save(user);
-
+        user = userRepository.save(user);
 
         Person person = Person.builder()
                 .name(registrationDto.getName())
