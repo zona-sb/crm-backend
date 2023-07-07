@@ -23,6 +23,10 @@ public class Status {
     @Column(name = "title")
     private String title;
 
+    @ManyToOne()
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
+
 //    Связи
 
     @JsonIgnore

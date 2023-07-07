@@ -4,7 +4,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.zonasb.backend.dto.fromFront.RegistrationDto;
+import ru.zonasb.backend.dto.registration.RegistrationDto;
 import ru.zonasb.backend.model.people.Manager;
 import ru.zonasb.backend.model.people.Person;
 import ru.zonasb.backend.model.people.Role;
@@ -18,7 +18,7 @@ import ru.zonasb.backend.service.role.RoleService;
 @Transactional
 @AllArgsConstructor
 public class RegistrationServiceImpl implements RegistrationService{
-    private RoleService roleService;
+    private final RoleService roleService;
     private final UserRepository userRepository;
     private final PersonRepository personRepository;
     private final ManagerRepository managerRepository;
