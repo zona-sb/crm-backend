@@ -1,6 +1,6 @@
 package ru.zonasb.backend.service.manager;
 
-import ru.zonasb.backend.dto.ManagerDto;
+import ru.zonasb.backend.dto.people.ManagerDto;
 import ru.zonasb.backend.model.people.Manager;
 
 import java.util.List;

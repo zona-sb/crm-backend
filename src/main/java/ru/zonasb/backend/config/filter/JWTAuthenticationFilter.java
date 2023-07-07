@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.security.web.util.matcher.RequestMatcher;
 import ru.zonasb.backend.config.component.JWTHelper;
-import ru.zonasb.backend.dto.LoginDto;
+import ru.zonasb.backend.dto.registration.LoginDto;
 
 
 import java.io.IOException;

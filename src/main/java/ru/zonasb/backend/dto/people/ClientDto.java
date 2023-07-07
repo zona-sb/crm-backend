@@ -1,4 +1,4 @@
-package ru.zonasb.backend.dto;
+package ru.zonasb.backend.dto.people;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.Email;
@@ -11,7 +11,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PersonDto {
+public class ClientDto {
+
+    private Long id;
 
     @NotBlank(message = "name should not be Empty")
     @Column(name = "name")
@@ -26,4 +28,11 @@ public class PersonDto {
     @Email(message = "Incorrect Email")
     @Column(name = "email", unique = true)
     private String email;
+
+    @Column(name = "company")
+    private String company;
+
+    @Column(name = "comment")
+    private String comment;
+
 }

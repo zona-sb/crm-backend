@@ -30,6 +30,7 @@ import java.util.List;
 import static org.springframework.http.HttpMethod.POST;
 import static ru.zonasb.backend.controller.RegistrationController.REGISTRATION_CONTROLLER_PATH;
 
+
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity()

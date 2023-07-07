@@ -1,6 +1,6 @@
 package ru.zonasb.backend.service.role;
 
-import ru.zonasb.backend.dto.RoleDto;
+import ru.zonasb.backend.dto.people.RoleDto;
 import ru.zonasb.backend.model.people.Role;
 
 import java.util.List;
