@@ -29,6 +29,10 @@ public class ClientServiceImpl implements ClientService{
 
     @Override
     public ClientDto createNewClient(final ClientDto clientDto) {
+        if (personRepository.findPersonByEmail(clientDto.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("client with that email is already exist");
+        }
+
         Person person = Person.builder()
                 .name(clientDto.getName())
                 .phone(clientDto.getPhone())
