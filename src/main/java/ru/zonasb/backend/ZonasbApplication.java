@@ -10,4 +10,3 @@ public class ZonasbApplication {
         SpringApplication.run(ZonasbApplication.class, args);
     }
 }
-
