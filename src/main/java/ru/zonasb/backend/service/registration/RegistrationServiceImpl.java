@@ -37,7 +37,8 @@ public class RegistrationServiceImpl implements RegistrationService{
                 .password(passwordEncoder.encode(registrationDto.getPassword()))
                 .role(role)
                 .build();
-        user = userRepository.save(user);
+        userRepository.save(user);
+
 
         Person person = Person.builder()
                 .name(registrationDto.getName())
