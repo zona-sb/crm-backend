@@ -27,7 +27,7 @@ public class RegistrationServiceImpl implements RegistrationService{
     @Override
     public RegistrationDto registrationNewManager(final RegistrationDto registrationDto) {
         if (userRepository.findByEmail(registrationDto.getEmail()).isPresent()) {
-            throw new RuntimeException("user with that email already exist");
+            throw new IllegalArgumentException("user with that email already exist");
         }
 
         Role role = roleService.getRoleByTitle("Менеджер");

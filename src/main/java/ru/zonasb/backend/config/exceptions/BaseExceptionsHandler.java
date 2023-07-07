@@ -14,11 +14,7 @@ import java.nio.file.AccessDeniedException;
 import java.util.List;
 import java.util.NoSuchElementException;
 
-import static org.springframework.http.HttpStatus.BAD_REQUEST;
-import static org.springframework.http.HttpStatus.FORBIDDEN;
-import static org.springframework.http.HttpStatus.NOT_FOUND;
-import static org.springframework.http.HttpStatus.UNAUTHORIZED;
-import static org.springframework.http.HttpStatus.UNPROCESSABLE_ENTITY;
+import static org.springframework.http.HttpStatus.*;
 
 @ResponseBody
 @ControllerAdvice
@@ -27,6 +23,12 @@ public class BaseExceptionsHandler {
     @ResponseStatus(NOT_FOUND)
     @ExceptionHandler(NoSuchElementException.class)
     public String noSuchElementExceptionHandler(NoSuchElementException exception) {
+        return exception.getMessage();
+    }
+
+    @ResponseStatus(CONFLICT)
+    @ExceptionHandler(IllegalArgumentException.class)
+    public String IllegalArgumentExceptionHandler(IllegalArgumentException exception) {
         return exception.getMessage();
     }
 

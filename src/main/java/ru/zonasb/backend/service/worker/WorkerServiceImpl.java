@@ -31,11 +31,16 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public WorkerDto createNewWorker(final WorkerDto workerDto) {
-        Person person = Person.builder()
-                .name(workerDto.getName())
-                .phone(workerDto.getPhone())
-                .email(workerDto.getEmail())
-                .build();
+        Person person;
+        if (personRepository.findPersonByEmail(workerDto.getEmail()).isPresent()) {
+            person = personRepository.findPersonByEmail(workerDto.getEmail()).get();
+        } else {
+            person = Person.builder()
+                    .name(workerDto.getName())
+                    .phone(workerDto.getPhone())
+                    .email(workerDto.getEmail())
+                    .build();
+        }
         person = personRepository.save(person);
         User user = userService.getCurrentUser();
         Worker worker = Worker.builder()
