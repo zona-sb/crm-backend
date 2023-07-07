@@ -31,7 +31,7 @@ public class Person {
 
     @NotBlank(message = "email should not be Empty")
     @Email(message = "Incorrect Email")
-    @Column(name = "email", unique = true)
+    @Column(name = "email")
     private String email;
 
 //    Связи
