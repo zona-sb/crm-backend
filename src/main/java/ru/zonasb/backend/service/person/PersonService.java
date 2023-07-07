@@ -1,7 +1,7 @@
 package ru.zonasb.backend.service.person;
 
 
-import ru.zonasb.backend.dto.PersonDto;
+import ru.zonasb.backend.dto.people.PersonDto;
 import ru.zonasb.backend.model.people.Person;
 
 import java.util.List;

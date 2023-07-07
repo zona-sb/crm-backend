@@ -1,6 +1,5 @@
 package ru.zonasb.backend.model.tasks;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.*;
@@ -13,8 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "status")
-public class Status {
+@Table(name = "category")
+public class Category {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -23,13 +23,11 @@ public class Status {
     @Column(name = "title")
     private String title;
 
-    @ManyToOne()
-    @JoinColumn(name = "category_id", referencedColumnName = "id")
-    private Category category;
-
 //    Связи
 
-    @JsonIgnore
-    @OneToMany(mappedBy = "status")
+    @OneToMany(mappedBy = "category")
+    private List<Status> statuses;
+
+    @OneToMany(mappedBy = "category")
     private List<Task> tasks;
 }

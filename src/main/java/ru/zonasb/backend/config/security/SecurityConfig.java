@@ -26,17 +26,10 @@ import ru.zonasb.backend.config.filter.JWTAuthorizationFilter;
 
 import java.util.List;
 
-<<<<<<< HEAD
-import static org.springframework.http.HttpMethod.GET;
-import static org.springframework.http.HttpMethod.POST;
-import static ru.zonasb.backend.controller.RegistrationController.REGISTRATION_CONTROLLER_PATH;
-=======
 
-import static org.springframework.http.HttpMethod.GET;
 import static org.springframework.http.HttpMethod.POST;
 import static ru.zonasb.backend.controller.RegistrationController.REGISTRATION_CONTROLLER_PATH;
-import static ru.zonasb.backend.controller.UserController.USER_CONTROLLER_PATH;
->>>>>>> test
+
 
 @Configuration
 @EnableWebSecurity

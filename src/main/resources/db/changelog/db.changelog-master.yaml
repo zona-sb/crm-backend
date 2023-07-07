@@ -1,6 +1,26 @@
+
+
 databaseChangeLog:
 - changeSet:
-    id: 1688651958158-1
+    id: 1688729708265-1
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: categoryPK
+            name: id
+            type: BIGINT
+        - column:
+            name: title
+            type: VARCHAR(255)
+        tableName: category
+- changeSet:
+    id: 1688729708265-2
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -24,7 +44,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: client
 - changeSet:
-    id: 1688651958158-2
+    id: 1688729708265-3
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -45,7 +65,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: manager
 - changeSet:
-    id: 1688651958158-3
+    id: 1688729708265-4
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -69,7 +89,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: person
 - changeSet:
-    id: 1688651958158-4
+    id: 1688729708265-5
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -90,7 +110,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: priority
 - changeSet:
-    id: 1688651958158-5
+    id: 1688729708265-6
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -119,6 +139,13 @@ databaseChangeLog:
             name: communicateion_date
             type: TIMESTAMP(6)
         - column:
+            defaultValueBoolean: false
+            name: is_completed
+            type: BOOLEAN
+        - column:
+            name: category_id
+            type: BIGINT
+        - column:
             name: client_id
             type: BIGINT
         - column:
@@ -132,7 +159,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: status
 - changeSet:
-    id: 1688651958158-6
+    id: 1688729708265-7
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -156,7 +183,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: user_data
 - changeSet:
-    id: 1688651958158-7
+    id: 1688729708265-8
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -174,7 +201,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: user_role
 - changeSet:
-    id: 1688651958158-8
+    id: 1688729708265-9
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -195,7 +222,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: worker
 - changeSet:
-    id: 1688651958158-9
+    id: 1688729708265-10
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -208,7 +235,7 @@ databaseChangeLog:
         referencedTableName: client
         validate: true
 - changeSet:
-    id: 1688651958158-10
+    id: 1688729708265-11
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -221,7 +248,7 @@ databaseChangeLog:
         referencedTableName: manager
         validate: true
 - changeSet:
-    id: 1688651958158-11
+    id: 1688729708265-12
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -234,7 +261,7 @@ databaseChangeLog:
         referencedTableName: user_data
         validate: true
 - changeSet:
-    id: 1688651958158-12
+    id: 1688729708265-13
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -247,7 +274,7 @@ databaseChangeLog:
         referencedTableName: priority
         validate: true
 - changeSet:
-    id: 1688651958158-13
+    id: 1688729708265-14
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -260,7 +287,7 @@ databaseChangeLog:
         referencedTableName: user_role
         validate: true
 - changeSet:
-    id: 1688651958158-14
+    id: 1688729708265-15
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -273,7 +300,7 @@ databaseChangeLog:
         referencedTableName: status
         validate: true
 - changeSet:
-    id: 1688651958158-15
+    id: 1688729708265-16
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -286,7 +313,7 @@ databaseChangeLog:
         referencedTableName: person
         validate: true
 - changeSet:
-    id: 1688651958158-16
+    id: 1688729708265-17
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -299,7 +326,20 @@ databaseChangeLog:
         referencedTableName: user_data
         validate: true
 - changeSet:
-    id: 1688651958158-17
+    id: 1688729708265-18
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: category_id
+        baseTableName: status
+        constraintName: FKq549233s9wg0wxg3wdluyqoai
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: category
+        validate: true
+- changeSet:
+    id: 1688729708265-19
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -312,7 +352,7 @@ databaseChangeLog:
         referencedTableName: person
         validate: true
 - changeSet:
-    id: 1688651958158-18
+    id: 1688729708265-20
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:

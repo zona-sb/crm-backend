@@ -1,4 +1,4 @@
-package ru.zonasb.backend.dto;
+package ru.zonasb.backend.dto.people;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

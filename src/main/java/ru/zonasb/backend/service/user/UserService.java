@@ -1,6 +1,6 @@
 package ru.zonasb.backend.service.user;
 
-import ru.zonasb.backend.dto.UserDto;
+import ru.zonasb.backend.dto.people.UserDto;
 import ru.zonasb.backend.model.people.User;
 
 import java.util.List;

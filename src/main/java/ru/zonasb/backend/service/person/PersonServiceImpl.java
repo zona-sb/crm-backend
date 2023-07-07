@@ -3,7 +3,7 @@ package ru.zonasb.backend.service.person;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import ru.zonasb.backend.dto.PersonDto;
+import ru.zonasb.backend.dto.people.PersonDto;
 import ru.zonasb.backend.model.people.Person;
 import ru.zonasb.backend.repository.PersonRepository;
 
@@ -14,7 +14,7 @@ import java.util.NoSuchElementException;
 @Transactional
 @AllArgsConstructor
 public class PersonServiceImpl implements PersonService{
-    private PersonRepository personRepository;
+    private final PersonRepository personRepository;
     @Override
     public Person getPersonById(final long id) {
         return personRepository.findById(id)

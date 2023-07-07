@@ -1,4 +1,4 @@
-package ru.zonasb.backend.dto;
+package ru.zonasb.backend.dto.people;
 
 import jakarta.persistence.Column;
 import jakarta.validation.constraints.NotBlank;
