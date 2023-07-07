@@ -33,9 +33,16 @@ public class Task {
     @Column(name = "comment")
     private String comment;
 
+    @Column(name = "isCompleted", columnDefinition = "boolean default false")
+    private boolean isCompleted;
+
     @ManyToOne
     @JoinColumn(name = "status_id", referencedColumnName = "id")
     private Status status;
+
+    @ManyToOne
+    @JoinColumn(name = "category_id", referencedColumnName = "id")
+    private Category category;
 
     @ManyToOne
     @JoinColumn(name = "priority_id", referencedColumnName = "id")

@@ -1,4 +1,4 @@
-package ru.zonasb.backend.dto.fromFront;
+package ru.zonasb.backend.dto.registration;
 
 
 import jakarta.persistence.Column;
