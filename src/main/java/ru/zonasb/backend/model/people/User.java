@@ -7,8 +7,6 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
-import java.util.List;
-
 @Entity
 @Getter
 @Setter
@@ -41,10 +39,4 @@ public class User {
     @JsonIgnore
     @OneToOne(mappedBy = "user")
     private Manager manager;
-
-    @JsonIgnore
-    @OneToMany(mappedBy = "user")
-    private List<Worker> workers;
-
-
 }
