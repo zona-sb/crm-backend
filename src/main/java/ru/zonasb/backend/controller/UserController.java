@@ -1,10 +1,10 @@
 package ru.zonasb.backend.controller;
 
-import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
-import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.*;
-import ru.zonasb.backend.dto.people.UserDto;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.model.people.User;
 import ru.zonasb.backend.service.user.UserService;
 
@@ -30,9 +30,4 @@ public class UserController {
         return userService.getAllUsers();
     }
 
-    @PostMapping()
-    @ResponseStatus(HttpStatus.CREATED)
-    public User createNewUser(@RequestBody @Valid UserDto userDto) {
-        return userService.createNewUser(userDto);
-    }
 }

@@ -19,7 +19,4 @@ public class Worker {
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User user;
 }

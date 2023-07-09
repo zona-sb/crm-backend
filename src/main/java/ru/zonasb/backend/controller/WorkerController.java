@@ -8,6 +8,8 @@ import ru.zonasb.backend.dto.people.WorkerDto;
 import ru.zonasb.backend.model.people.Worker;
 import ru.zonasb.backend.service.worker.WorkerService;
 
+import java.util.List;
+
 import static ru.zonasb.backend.controller.WorkerController.WORKER_CONTROLLER_PATH;
 
 @AllArgsConstructor
@@ -16,6 +18,7 @@ import static ru.zonasb.backend.controller.WorkerController.WORKER_CONTROLLER_PA
 public class WorkerController {
 
     public static final String WORKER_CONTROLLER_PATH = "/workers";
+    private static final String MYSELF = "/myself";
     public static final String ID = "/{id}";
     private final WorkerService workerService;
 
@@ -24,15 +27,24 @@ public class WorkerController {
         return workerService.getWorkerById(id);
     }
 
+    @GetMapping
+    public List<Worker> getAllWorkers() {
+        return workerService.getAllWorkers();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public WorkerDto createNewWorker(@RequestBody WorkerDto workerDto) {
+    public Worker createNewWorker(@RequestBody WorkerDto workerDto) {
         return workerService.createNewWorker(workerDto);
     }
 
     @PostMapping(ID)
-    public WorkerDto updateWorkerById(@PathVariable long id, @RequestBody WorkerDto workerDto) {
+    public Worker updateWorkerById(@PathVariable long id, @RequestBody WorkerDto workerDto) {
         return workerService.updateWorkerById(id, workerDto);
     }
 
+    @PostMapping(MYSELF)
+    public Worker createMyselfWorker() {
+        return workerService.createMySelfAsWorker();
+    }
 }
