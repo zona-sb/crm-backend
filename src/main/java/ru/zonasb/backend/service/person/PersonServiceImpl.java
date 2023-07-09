@@ -28,6 +28,9 @@ public class PersonServiceImpl implements PersonService{
 
     @Override
     public Person createNewPerson(final PersonDto personDto) {
+        if (personRepository.findPersonByEmail(personDto.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("person with that email is already exist");
+        }
         Person person = Person.builder()
                 .name(personDto.getName())
                 .phone(personDto.getPhone())

@@ -5,13 +5,11 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.zonasb.backend.dto.registration.RegistrationDto;
-import ru.zonasb.backend.model.people.Manager;
-import ru.zonasb.backend.model.people.Person;
-import ru.zonasb.backend.model.people.Role;
-import ru.zonasb.backend.model.people.User;
+import ru.zonasb.backend.model.people.*;
 import ru.zonasb.backend.repository.ManagerRepository;
 import ru.zonasb.backend.repository.PersonRepository;
 import ru.zonasb.backend.repository.UserRepository;
+import ru.zonasb.backend.repository.WorkerRepository;
 import ru.zonasb.backend.service.role.RoleService;
 
 @Service
@@ -23,9 +21,15 @@ public class RegistrationServiceImpl implements RegistrationService{
     private final PersonRepository personRepository;
     private final ManagerRepository managerRepository;
     private final PasswordEncoder passwordEncoder;
+    private final WorkerRepository workerRepository;
 
     @Override
     public RegistrationDto registrationNewManager(final RegistrationDto registrationDto) {
+        if (userRepository.findByEmail(registrationDto.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("user with that email is already exist");
+        }
+
+
         Role role = roleService.getRoleByTitle("Менеджер");
 
 
