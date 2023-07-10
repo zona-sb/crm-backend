@@ -7,6 +7,8 @@ import ru.zonasb.backend.dto.people.ClientDto;
 import ru.zonasb.backend.model.people.Client;
 import ru.zonasb.backend.service.client.ClientService;
 
+import java.util.List;
+
 import static ru.zonasb.backend.controller.ClientController.CLIENT_CONTROLLER_PATH;
 
 @AllArgsConstructor
@@ -22,14 +24,25 @@ public class ClientController {
         return clientService.getClientById(id);
     }
 
+    @GetMapping
+    public List<Client> getAllClients() {
+        return clientService.getAllClients();
+    }
+
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ClientDto createNewClient(@RequestBody ClientDto clientDto) {
+    public Client createNewClient(@RequestBody ClientDto clientDto) {
         return clientService.createNewClient(clientDto);
     }
 
     @PostMapping(ID)
-    public ClientDto updateClient(@PathVariable long id, @RequestBody ClientDto clientDto) {
+    public Client updateClient(@PathVariable long id, @RequestBody ClientDto clientDto) {
         return clientService.updateClientById(id,clientDto);
     }
+
+    @DeleteMapping(ID)
+    public void deleteClientById(@PathVariable long id) {
+        clientService.deleteById(id);
+    }
+
 }

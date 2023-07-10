@@ -51,7 +51,7 @@ public class WorkerServiceImpl implements WorkerService {
         Worker worker = Worker.builder()
                 .person(person)
                 .build();
-        return worker = workerRepository.save(worker);
+        return workerRepository.save(worker);
     }
 
     @Override
@@ -74,6 +74,11 @@ public class WorkerServiceImpl implements WorkerService {
         person.setPhone(workerDto.getPhone());
         personRepository.save(person);
         return worker;
+    }
+
+    @Override
+    public void deleteWorkerById(final long id) {
+        personService.deletePerson(getWorkerById(id).getPerson().getId());
     }
 
 

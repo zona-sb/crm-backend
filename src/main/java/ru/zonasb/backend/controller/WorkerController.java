@@ -47,4 +47,9 @@ public class WorkerController {
     public Worker createMyselfWorker() {
         return workerService.createMySelfAsWorker();
     }
+
+    @DeleteMapping(ID)
+    public void deleteWorkerById(@PathVariable long id) {
+        workerService.deleteWorkerById(id);
+    }
 }
