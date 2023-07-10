@@ -26,7 +26,7 @@ public class Person {
     private String name;
 
     @NotBlank(message = "phone should not be Empty")
-    @Size(min = 11, max = 12)
+    @Size(min = 12, max = 12)
     @Pattern(regexp = "^\\+?[0-9]{11}$", message = "phone number should be like \"+11111111111\"")
     private String phone;
 
