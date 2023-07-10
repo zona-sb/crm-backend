@@ -10,12 +10,13 @@ import ru.zonasb.backend.repository.ClientRepository;
 import ru.zonasb.backend.repository.PersonRepository;
 import ru.zonasb.backend.service.person.PersonService;
 
+import java.util.List;
 import java.util.NoSuchElementException;
 
 @Service
 @Transactional
 @AllArgsConstructor
-public class ClientServiceImpl implements ClientService{
+public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
     private final PersonRepository personRepository;
     private final PersonService personService;
@@ -28,7 +29,12 @@ public class ClientServiceImpl implements ClientService{
     }
 
     @Override
-    public ClientDto createNewClient(final ClientDto clientDto) {
+    public List<Client> getAllClients() {
+        return clientRepository.findAll();
+    }
+
+    @Override
+    public Client createNewClient(final ClientDto clientDto) {
         if (personRepository.findPersonByEmail(clientDto.getEmail()).isPresent()) {
             throw new IllegalArgumentException("client with that email is already exist");
         }
@@ -45,13 +51,11 @@ public class ClientServiceImpl implements ClientService{
                 .comment(clientDto.getComment())
                 .person(person)
                 .build();
-        client = clientRepository.save(client);
-        clientDto.setId(client.getId());
-        return clientDto;
+        return clientRepository.save(client);
     }
 
     @Override
-    public ClientDto updateClientById(final long id, final ClientDto clientDto) {
+    public Client updateClientById(final long id, final ClientDto clientDto) {
         Client client = getClientById(id);
         Person person = personService.getPersonById(client.getPerson().getId());
         person.setPhone(clientDto.getPhone());
@@ -61,8 +65,12 @@ public class ClientServiceImpl implements ClientService{
         client.setCompany(clientDto.getCompany());
         client.setComment(clientDto.getComment());
         client.setPerson(person);
-        client = clientRepository.save(client);
-        clientDto.setId(id);
-        return clientDto;
+        return clientRepository.save(client);
+    }
+
+    @Override
+    public void deleteById(final long id) {
+
+        personRepository.deleteById(getClientById(id).getPerson().getId());
     }
 }

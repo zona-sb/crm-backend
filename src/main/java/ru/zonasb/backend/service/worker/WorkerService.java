@@ -11,6 +11,7 @@ public interface WorkerService {
     Worker createNewWorker(WorkerDto workerDto);
     Worker createMySelfAsWorker();
     Worker updateWorkerById(long id, WorkerDto workerDto);
+    void deleteWorkerById(long id);
 
 
 }

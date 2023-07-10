@@ -41,11 +41,11 @@ public class Person {
     private Manager manager;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "person")
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private Worker worker;
 
     @JsonIgnore
-    @OneToOne(mappedBy = "person")
+    @OneToOne(mappedBy = "person", cascade = CascadeType.ALL)
     private Client client;
 
 }
