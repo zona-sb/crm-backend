@@ -20,12 +20,14 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.web.util.matcher.NegatedRequestMatcher;
 import org.springframework.security.web.util.matcher.OrRequestMatcher;
 import org.springframework.security.web.util.matcher.RequestMatcher;
+import org.springframework.web.cors.CorsConfiguration;
+import org.springframework.web.cors.CorsConfigurationSource;
+import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 import ru.zonasb.backend.config.component.JWTHelper;
 import ru.zonasb.backend.config.filter.JWTAuthenticationFilter;
 import ru.zonasb.backend.config.filter.JWTAuthorizationFilter;
 
 import java.util.List;
-
 
 import static org.springframework.http.HttpMethod.POST;
 import static ru.zonasb.backend.controller.RegistrationController.REGISTRATION_CONTROLLER_PATH;
@@ -103,5 +105,11 @@ public class SecurityConfig {
                 .logout().disable();
 
         return http.build();
+    }
+    @Bean
+    CorsConfigurationSource corsConfigurationSource() {
+        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+        source.registerCorsConfiguration("/**", new CorsConfiguration().applyPermitDefaultValues());
+        return source;
     }
 }
