@@ -35,7 +35,7 @@ public class Person {
     @Column(name = "email")
     private String email;
 
-//    Связи
+    //    Связи
     @JsonIgnore
     @OneToOne(mappedBy = "person")
     private Manager manager;
