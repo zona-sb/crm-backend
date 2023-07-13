@@ -27,7 +27,7 @@ public class Person {
 
     @NotBlank(message = "phone should not be Empty")
     @Size(min = 12, max = 12)
-    @Pattern(regexp = "^\\+?[0-9]{11}$", message = "phone number should be like \"+11111111111\"")
+    @Pattern(regexp = "^\\+7\\d{10}$", message = "phone number should be like \"+7**********\"")
     private String phone;
 
     @NotBlank(message = "email should not be Empty")
@@ -35,7 +35,7 @@ public class Person {
     @Column(name = "email")
     private String email;
 
-//    Связи
+    //    Связи
     @JsonIgnore
     @OneToOne(mappedBy = "person")
     private Manager manager;
