@@ -41,6 +41,9 @@ public class WorkerServiceImpl implements WorkerService {
         if (personRepository.findPersonByEmail(workerDto.getEmail()).isPresent()) {
             throw new IllegalArgumentException("worker with that email is already exist");
         }
+        if (personRepository.findPersonByPhone(workerDto.getPhone()).isPresent()) {
+            throw new IllegalArgumentException("worker with that phone is already exist");
+        }
         Person person = Person.builder()
                 .name(workerDto.getName())
                 .phone(workerDto.getPhone())
@@ -59,6 +62,9 @@ public class WorkerServiceImpl implements WorkerService {
         User user = userService.getCurrentUser();
         Manager manager = user.getManager();
         Person person = manager.getPerson();
+        if (workerRepository.findWorkerByPersonPhoneAndPersonEmail(person.getPhone(), person.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("that worker is already exist");
+        }
         Worker worker = Worker.builder()
                 .person(person)
                 .build();
@@ -67,6 +73,12 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public Worker updateWorkerById(final long id, final WorkerDto workerDto) {
+        if (personRepository.findPersonByEmail(workerDto.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("worker with that email is already exist");
+        }
+        if (personRepository.findPersonByPhone(workerDto.getPhone()).isPresent()) {
+            throw new IllegalArgumentException("worker with that phone is already exist");
+        }
         Worker worker = getWorkerById(id);
         Person person = personService.getPersonById(worker.getPerson().getId());
         person.setName(workerDto.getName());

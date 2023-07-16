@@ -35,7 +35,7 @@ public class ClientController {
         return clientService.createNewClient(clientDto);
     }
 
-    @PostMapping(ID)
+    @PutMapping(ID)
     public Client updateClient(@PathVariable long id, @RequestBody ClientDto clientDto) {
         return clientService.updateClientById(id,clientDto);
     }
