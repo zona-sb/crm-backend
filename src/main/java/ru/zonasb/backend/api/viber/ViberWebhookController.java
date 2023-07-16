@@ -11,7 +11,7 @@ import java.util.ArrayList;
 @RestController
 public class ViberWebhookController {
 
-    @PostMapping("/webhook")
+    @PostMapping("${base-url}" + "/webhook")
     public String handleWebhook(@RequestBody String payload) {
         WebhookResponse webhookResponse = WebhookResponse.builder()
                 .status(0)
