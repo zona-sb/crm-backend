@@ -38,7 +38,7 @@ public class WorkerController {
         return workerService.createNewWorker(workerDto);
     }
 
-    @PostMapping(ID)
+    @PutMapping(ID)
     public Worker updateWorkerById(@PathVariable long id, @RequestBody WorkerDto workerDto) {
         return workerService.updateWorkerById(id, workerDto);
     }

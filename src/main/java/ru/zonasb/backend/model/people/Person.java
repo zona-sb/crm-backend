@@ -28,11 +28,12 @@ public class Person {
     @NotBlank(message = "phone should not be Empty")
     @Size(min = 12, max = 12)
     @Pattern(regexp = "^\\+7\\d{10}$", message = "phone number should be like \"+7**********\"")
+    @Column(name = "phone", unique = true)
     private String phone;
 
     @NotBlank(message = "email should not be Empty")
     @Email(message = "Incorrect Email")
-    @Column(name = "email")
+    @Column(name = "email", unique = true)
     private String email;
 
     //    Связи
