@@ -28,6 +28,9 @@ public class RegistrationServiceImpl implements RegistrationService{
         if (userRepository.findByEmail(registrationDto.getEmail()).isPresent()) {
             throw new IllegalArgumentException("user with that email is already exist");
         }
+        if (personRepository.findPersonByPhone(registrationDto.getPhone()).isPresent()) {
+            throw new IllegalArgumentException("user with that phone is already exist");
+        }
 
 
         Role role = roleService.getRoleByTitle("Менеджер");

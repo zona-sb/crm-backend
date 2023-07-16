@@ -38,6 +38,9 @@ public class ClientServiceImpl implements ClientService {
         if (personRepository.findPersonByEmail(clientDto.getEmail()).isPresent()) {
             throw new IllegalArgumentException("client with that email is already exist");
         }
+        if (personRepository.findPersonByPhone(clientDto.getPhone()).isPresent()) {
+            throw new IllegalArgumentException("client with that phone is already exist");
+        }
 
         Person person = Person.builder()
                 .name(clientDto.getName())
@@ -56,6 +59,12 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client updateClientById(final long id, final ClientDto clientDto) {
+        if (personRepository.findPersonByEmail(clientDto.getEmail()).isPresent()) {
+            throw new IllegalArgumentException("client with that email is already exist");
+        }
+        if (personRepository.findPersonByPhone(clientDto.getPhone()).isPresent()) {
+            throw new IllegalArgumentException("client with that phone is already exist");
+        }
         Client client = getClientById(id);
         Person person = personService.getPersonById(client.getPerson().getId());
         person.setPhone(clientDto.getPhone());

@@ -27,8 +27,8 @@ public class User {
 
     @JsonIgnore
     @NotBlank(message = "Password should not be Empty")
-    @Column(name = "password")
     @Size(min = 3, max = 100, message = "Password should be between at 3 to 100 symbols")
+    @Column(name = "password")
     private String password;
 
     @ManyToOne
