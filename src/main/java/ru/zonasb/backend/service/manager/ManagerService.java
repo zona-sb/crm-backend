@@ -15,4 +15,5 @@ public interface ManagerService {
     Manager updateManager(long id, ManagerDto managerDto);
 
     void deleteManager(long id);
+    
 }
