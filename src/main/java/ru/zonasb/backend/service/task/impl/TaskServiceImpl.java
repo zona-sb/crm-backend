@@ -47,7 +47,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getAllTasks() {
-        return taskRepository.findAllOrderedByDateDescending();
+        return taskRepository.findAllByOrderByDateDesc();
     }
 
     @Override

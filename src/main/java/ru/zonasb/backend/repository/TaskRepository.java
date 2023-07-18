@@ -19,5 +19,5 @@ public interface TaskRepository extends JpaRepository<Task, Long> {
 
     Optional<List<Task>> findTaskByCategoryAndStatus(Category category, Status status);
 
-    List<Task> findAllOrderedByDateDescending();
+    List<Task> findAllByOrderByDateDesc();
 }
