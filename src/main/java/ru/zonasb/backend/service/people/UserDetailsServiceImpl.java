@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.user;
+package ru.zonasb.backend.service.people;
 
 
 import lombok.RequiredArgsConstructor;

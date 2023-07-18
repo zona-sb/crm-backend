@@ -1,4 +1,4 @@
-package ru.zonasb.backend.controller;
+package ru.zonasb.backend.controller.people;
 
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
@@ -6,11 +6,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 import ru.zonasb.backend.dto.people.ClientDto;
 import ru.zonasb.backend.model.people.Client;
-import ru.zonasb.backend.service.client.ClientService;
+import ru.zonasb.backend.service.people.interfase.ClientService;
 
 import java.util.List;
 
-import static ru.zonasb.backend.controller.ClientController.CLIENT_CONTROLLER_PATH;
+import static ru.zonasb.backend.controller.people.ClientController.CLIENT_CONTROLLER_PATH;
 
 @AllArgsConstructor
 @RestController

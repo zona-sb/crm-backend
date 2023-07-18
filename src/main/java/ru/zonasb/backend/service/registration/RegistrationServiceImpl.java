@@ -10,7 +10,7 @@ import ru.zonasb.backend.repository.ManagerRepository;
 import ru.zonasb.backend.repository.PersonRepository;
 import ru.zonasb.backend.repository.UserRepository;
 import ru.zonasb.backend.repository.WorkerRepository;
-import ru.zonasb.backend.service.role.RoleService;
+import ru.zonasb.backend.service.people.interfase.RoleService;
 
 @Service
 @Transactional

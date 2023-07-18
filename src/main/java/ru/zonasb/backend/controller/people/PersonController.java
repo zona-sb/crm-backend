@@ -1,15 +1,15 @@
-package ru.zonasb.backend.controller;
+package ru.zonasb.backend.controller.people;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.model.people.Person;
-import ru.zonasb.backend.service.person.PersonService;
+import ru.zonasb.backend.service.people.interfase.PersonService;
 
 import java.util.List;
 
-import static ru.zonasb.backend.controller.PersonController.PERSON_CONTROLLER_PATH;
+import static ru.zonasb.backend.controller.people.PersonController.PERSON_CONTROLLER_PATH;
 
 // вспомогательный контроллер для тестирования
 @AllArgsConstructor

@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.worker;
+package ru.zonasb.backend.service.people.interfase;
 
 import ru.zonasb.backend.dto.people.WorkerDto;
 import ru.zonasb.backend.model.people.Worker;

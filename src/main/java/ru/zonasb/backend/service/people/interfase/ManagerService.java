@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.manager;
+package ru.zonasb.backend.service.people.interfase;
 
 import ru.zonasb.backend.dto.people.ManagerDto;
 import ru.zonasb.backend.model.people.Manager;

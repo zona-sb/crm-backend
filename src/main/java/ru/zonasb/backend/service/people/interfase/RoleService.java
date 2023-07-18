@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.role;
+package ru.zonasb.backend.service.people.interfase;
 
 import ru.zonasb.backend.dto.people.RoleDto;
 import ru.zonasb.backend.model.people.Role;

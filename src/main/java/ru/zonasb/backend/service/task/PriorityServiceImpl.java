@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.task.impl;
+package ru.zonasb.backend.service.task;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,7 @@ import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.model.tasks.Task;
 import ru.zonasb.backend.repository.PriorityRepository;
 import ru.zonasb.backend.repository.TaskRepository;
-import ru.zonasb.backend.service.task.PriorityService;
+import ru.zonasb.backend.service.task.interfase.PriorityService;
 
 import java.util.List;
 import java.util.NoSuchElementException;

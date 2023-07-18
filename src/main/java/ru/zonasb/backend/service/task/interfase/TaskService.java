@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.task;
+package ru.zonasb.backend.service.task.interfase;
 
 import ru.zonasb.backend.dto.task.TaskDto;
 import ru.zonasb.backend.model.tasks.Task;

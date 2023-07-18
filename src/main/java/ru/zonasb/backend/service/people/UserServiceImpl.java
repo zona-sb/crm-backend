@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.user;
+package ru.zonasb.backend.service.people;
 
 import lombok.AllArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import ru.zonasb.backend.dto.people.UserDto;
 import ru.zonasb.backend.model.people.User;
 import ru.zonasb.backend.repository.UserRepository;
+import ru.zonasb.backend.service.people.interfase.UserService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -15,7 +16,7 @@ import java.util.NoSuchElementException;
 @Service
 @Transactional
 @AllArgsConstructor
-public class UserServiceImpl implements UserService{
+public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
 
     private final PasswordEncoder passwordEncoder;

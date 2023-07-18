@@ -1,4 +1,4 @@
-package ru.zonasb.backend.controller;
+package ru.zonasb.backend.controller.people;
 
 import lombok.AllArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.model.people.User;
-import ru.zonasb.backend.service.user.UserService;
+import ru.zonasb.backend.service.people.interfase.UserService;
 
 import java.util.List;
 

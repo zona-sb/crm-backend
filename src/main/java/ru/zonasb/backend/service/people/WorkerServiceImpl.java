@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.worker;
+package ru.zonasb.backend.service.people;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -10,8 +10,9 @@ import ru.zonasb.backend.model.people.User;
 import ru.zonasb.backend.model.people.Worker;
 import ru.zonasb.backend.repository.PersonRepository;
 import ru.zonasb.backend.repository.WorkerRepository;
-import ru.zonasb.backend.service.person.PersonService;
-import ru.zonasb.backend.service.user.UserService;
+import ru.zonasb.backend.service.people.interfase.PersonService;
+import ru.zonasb.backend.service.people.interfase.UserService;
+import ru.zonasb.backend.service.people.interfase.WorkerService;
 
 import java.util.List;
 import java.util.NoSuchElementException;

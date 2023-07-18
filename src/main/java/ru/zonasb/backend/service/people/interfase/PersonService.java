@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.person;
+package ru.zonasb.backend.service.people.interfase;
 
 
 import ru.zonasb.backend.dto.people.PersonDto;

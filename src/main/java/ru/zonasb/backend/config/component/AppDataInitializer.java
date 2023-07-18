@@ -6,7 +6,7 @@ import org.springframework.context.event.EventListener;
 import org.springframework.core.io.ClassPathResource;
 import org.springframework.jdbc.datasource.init.ResourceDatabasePopulator;
 import org.springframework.stereotype.Component;
-import ru.zonasb.backend.service.role.RoleService;
+import ru.zonasb.backend.service.people.interfase.RoleService;
 
 import javax.sql.DataSource;
 

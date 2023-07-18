@@ -1,4 +1,4 @@
-package ru.zonasb.backend.service.client;
+package ru.zonasb.backend.service.people;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -8,7 +8,8 @@ import ru.zonasb.backend.model.people.Client;
 import ru.zonasb.backend.model.people.Person;
 import ru.zonasb.backend.repository.ClientRepository;
 import ru.zonasb.backend.repository.PersonRepository;
-import ru.zonasb.backend.service.person.PersonService;
+import ru.zonasb.backend.service.people.interfase.ClientService;
+import ru.zonasb.backend.service.people.interfase.PersonService;
 
 import java.util.List;
 import java.util.NoSuchElementException;

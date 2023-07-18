@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.dto.task.StatusDto;
 import ru.zonasb.backend.model.tasks.Status;
-import ru.zonasb.backend.service.task.StatusService;
+import ru.zonasb.backend.service.task.interfase.StatusService;
 
 import java.util.List;
 
