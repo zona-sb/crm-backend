@@ -61,6 +61,7 @@ public class SecurityConfig {
         this.publicUrls = new OrRequestMatcher(
                 loginRequest,
                 new AntPathRequestMatcher(baseUrl + REGISTRATION_CONTROLLER_PATH, POST.toString()),
+                new AntPathRequestMatcher(baseUrl + "/webhook", POST.toString()),
                 new NegatedRequestMatcher(new AntPathRequestMatcher(baseUrl + "/**"))
         );
     }

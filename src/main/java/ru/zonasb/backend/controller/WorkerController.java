@@ -1,6 +1,7 @@
 package ru.zonasb.backend.controller;
 
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -34,12 +35,12 @@ public class WorkerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Worker createNewWorker(@RequestBody WorkerDto workerDto) {
+    public Worker createNewWorker(@RequestBody @Valid WorkerDto workerDto) {
         return workerService.createNewWorker(workerDto);
     }
 
     @PutMapping(ID)
-    public Worker updateWorkerById(@PathVariable long id, @RequestBody WorkerDto workerDto) {
+    public Worker updateWorkerById(@PathVariable long id, @RequestBody @Valid WorkerDto workerDto) {
         return workerService.updateWorkerById(id, workerDto);
     }
 

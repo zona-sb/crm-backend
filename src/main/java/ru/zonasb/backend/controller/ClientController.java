@@ -1,5 +1,6 @@
 package ru.zonasb.backend.controller;
 
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
@@ -31,12 +32,12 @@ public class ClientController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Client createNewClient(@RequestBody ClientDto clientDto) {
+    public Client createNewClient(@RequestBody @Valid ClientDto clientDto) {
         return clientService.createNewClient(clientDto);
     }
 
     @PutMapping(ID)
-    public Client updateClient(@PathVariable long id, @RequestBody ClientDto clientDto) {
+    public Client updateClient(@PathVariable long id, @RequestBody @Valid ClientDto clientDto) {
         return clientService.updateClientById(id,clientDto);
     }
 
