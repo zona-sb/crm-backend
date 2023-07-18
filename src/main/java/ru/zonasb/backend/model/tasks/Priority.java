@@ -20,12 +20,15 @@ public class Priority {
     private Long id;
 
     @NotBlank(message = "title should not be Empty")
-    @Column(name = "title")
+    @Column(name = "title", unique = true)
     private String title;
 
     @NotBlank(message = "title should not be Empty")
-    @Column(name = "color")
+    @Column(name = "color", unique = true)
     private String color;
+
+    @Column(name = "priority_weight", unique = true)
+    private int weight;
 
 //    Связи
     @JsonIgnore
