@@ -1,5 +1,6 @@
 package ru.zonasb.backend.model.tasks;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -8,6 +9,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -29,15 +31,18 @@ public class Category {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "title should not be Empty")
+    @NotBlank(message = "Category title should not be Empty")
+    @Size(max = 255)
     @Column(name = "title", unique = true)
     private String categoryTitle;
 
 //    Связи
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Status> statuses;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "category")
     private List<Task> tasks;
 }

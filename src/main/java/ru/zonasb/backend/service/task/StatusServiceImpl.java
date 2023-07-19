@@ -1,20 +1,13 @@
 package ru.zonasb.backend.service.task;
 
-import lombok.AllArgsConstructor;
-import org.springframework.stereotype.Service;
-import ru.zonasb.backend.dto.task.StatusDto;
-import ru.zonasb.backend.model.tasks.Category;
-import ru.zonasb.backend.model.tasks.Status;
-import ru.zonasb.backend.model.tasks.Task;
-import ru.zonasb.backend.repository.CategoryRepository;
-import ru.zonasb.backend.repository.StatusRepository;
-import ru.zonasb.backend.repository.TaskRepository;
-import ru.zonasb.backend.service.task.interfase.CategoryService;
-import ru.zonasb.backend.service.task.interfase.StatusService;
+import lombok.*;
+import org.springframework.stereotype.*;
+import ru.zonasb.backend.dto.task.*;
+import ru.zonasb.backend.model.tasks.*;
+import ru.zonasb.backend.repository.*;
+import ru.zonasb.backend.service.task.interfase.*;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
+import java.util.*;
 
 @Service
 @AllArgsConstructor
@@ -22,7 +15,6 @@ public class StatusServiceImpl implements StatusService {
 
     StatusRepository statusRepository;
     CategoryService categoryService;
-    CategoryRepository categoryRepository;
     TaskRepository taskRepository;
 
     @Override

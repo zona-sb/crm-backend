@@ -3,6 +3,7 @@ package ru.zonasb.backend.controller.task;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -25,7 +26,7 @@ import java.util.List;
 @RequestMapping("${base-url}" + TaskController.TASK_CONTROLLER_PATH)
 public class TaskController {
 
-    public static final String TASK_CONTROLLER_PATH = "/Tasks";
+    public static final String TASK_CONTROLLER_PATH = "/tasks";
     public static final String ID = "/{id}";
 
     private final TaskService taskService;
@@ -55,7 +56,7 @@ public class TaskController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Task createNewTask(@RequestBody TaskDto taskDto) {
+    public Task createNewTask(@RequestBody @Valid TaskDto taskDto) {
         return taskService.createNewTask(taskDto);
     }
 
@@ -66,7 +67,7 @@ public class TaskController {
             @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
     })
     @PutMapping(ID)
-    public Task updateTask(@PathVariable Long id, @RequestBody TaskDto taskDto) {
+    public Task updateTask(@PathVariable Long id, @RequestBody @Valid TaskDto taskDto) {
         return taskService.updateTask(id, taskDto);
     }
 
