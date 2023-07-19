@@ -3,6 +3,7 @@ package ru.zonasb.backend.controller.task;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,7 +56,7 @@ public class CategoryController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Category createNewCategory(@RequestBody CategoryDto categoryDto) {
+    public Category createNewCategory(@RequestBody @Valid CategoryDto categoryDto) {
         return categoryService.createNewCategory(categoryDto);
     }
 
@@ -66,7 +67,7 @@ public class CategoryController {
             @ApiResponse(responseCode = "404", description = "Category with this id does not exist")
     })
     @PutMapping(ID)
-    public Category updateCategory(@PathVariable Long id, @RequestBody CategoryDto categoryDto) {
+    public Category updateCategory(@PathVariable Long id, @RequestBody @Valid CategoryDto categoryDto) {
         return categoryService.updateCategory(id, categoryDto);
     }
 

@@ -1,23 +1,11 @@
 package ru.zonasb.backend.model.tasks;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToMany;
-import jakarta.persistence.Table;
-import jakarta.validation.constraints.NotBlank;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import com.fasterxml.jackson.annotation.*;
+import jakarta.persistence.*;
+import jakarta.validation.constraints.*;
+import lombok.*;
 
-import java.util.List;
+import java.util.*;
 
 @Entity
 @Setter
@@ -25,14 +13,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "status")
+@Table(name = "status",
+        uniqueConstraints = @UniqueConstraint(columnNames = {"category_id", "title"}))
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @NotBlank(message = "title should not be Empty")
-    @Column(name = "title", unique = true)
+    @NotBlank(message = "Title should not be Empty")
+    @Size(max = 255)
+    @Column(name = "title")
     private String statusTitle;
 
     @ManyToOne()
@@ -44,4 +34,5 @@ public class Status {
     @JsonIgnore
     @OneToMany(mappedBy = "status")
     private List<Task> tasks;
+
 }

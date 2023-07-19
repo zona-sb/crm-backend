@@ -3,6 +3,7 @@ package ru.zonasb.backend.controller.task;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,7 +56,7 @@ public class PriorityController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Priority createNewPriority(@RequestBody PriorityDto priorityDto) {
+    public Priority createNewPriority(@RequestBody @Valid PriorityDto priorityDto) {
         return priorityService.createNewPriority(priorityDto);
     }
 
@@ -66,7 +67,7 @@ public class PriorityController {
             @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
     })
     @PutMapping(ID)
-    public Priority updatePriority(@PathVariable Long id, @RequestBody PriorityDto priorityDto) {
+    public Priority updatePriority(@PathVariable Long id, @RequestBody @Valid PriorityDto priorityDto) {
         return priorityService.updatePriority(id, priorityDto);
     }
 

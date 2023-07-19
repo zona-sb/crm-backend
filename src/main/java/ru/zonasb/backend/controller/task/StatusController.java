@@ -3,6 +3,7 @@ package ru.zonasb.backend.controller.task;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -55,7 +56,7 @@ public class StatusController {
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Status createNewStatus(@RequestBody StatusDto statusDto) {
+    public Status createNewStatus(@RequestBody @Valid StatusDto statusDto) {
         return statusService.createNewStatus(statusDto);
     }
 
@@ -66,7 +67,7 @@ public class StatusController {
             @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
     })
     @PutMapping(ID)
-    public Status updateStatus(@PathVariable Long id, @RequestBody StatusDto statusDto) {
+    public Status updateStatus(@PathVariable Long id, @RequestBody @Valid StatusDto statusDto) {
         return statusService.updateStatus(id, statusDto);
     }
 
