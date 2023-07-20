@@ -111,9 +111,9 @@ public class SecurityConfig implements WebMvcConfigurer {
     public void addCorsMappings(CorsRegistry registry) {
         registry.addMapping("/**")
                 .allowedOrigins("*")
-                .allowedMethods("*")
-                .allowedHeaders("*")
-                .allowCredentials(true);
+                .allowedMethods("*");
+//                .allowedHeaders("*")
+//                .allowCredentials(true);
     }
 //    @Bean
 //    CorsConfigurationSource corsConfigurationSource() {
