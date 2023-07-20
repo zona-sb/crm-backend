@@ -20,5 +20,5 @@ public class PriorityDto {
 
     @NotNull(message = "Priority weight cannot be null")
     @Min(value = 1, message = "Priority weight must be greater than 0")
-    private int weight;
+    private Integer weight;
 }
