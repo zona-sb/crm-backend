@@ -27,10 +27,8 @@ public class PriorityDto {
     private String color;
 
     @NotNull(message = "Priority weight cannot be null")
-
     @Min(value = 1, message = "Priority weight must be a positive integer")
     @Positive
     @Digits(integer = 10, fraction = 0)
     private int weight;
-
 }
