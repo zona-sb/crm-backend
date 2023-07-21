@@ -47,9 +47,15 @@ public class StatusServiceImpl implements StatusService {
 
     @Override
     public Status updateStatus(final Long id, final StatusDto statusDto) {
+        Category category = categoryService.getCategoryById(statusDto.getCategoryId());
+        String statusTitle =  statusDto.getStatusTitle();
+
+        if (statusRepository.findStatusByCategoryAndStatusTitle(category, statusTitle).isPresent()) {
+            throw new IllegalArgumentException("Status title should be changed in order to update status");
+        }
         Status statusToUpdate = getStatusById(id);
-        statusToUpdate.setStatusTitle(statusDto.getStatusTitle());
-        statusToUpdate.setCategory(categoryService.getCategoryById(statusDto.getCategoryId()));
+        statusToUpdate.setStatusTitle(statusTitle);
+        statusToUpdate.setCategory(category);
         return statusRepository.save(statusToUpdate);
     }
 

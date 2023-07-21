@@ -50,6 +50,10 @@ public class CategoryServiceImpl implements CategoryService {
 
     @Override
     public Category updateCategory(final Long id, final CategoryDto categoryDto) {
+        if (categoryRepository.findCategoryByCategoryTitle(categoryDto.getCategoryTitle()).isPresent()) {
+            throw new IllegalArgumentException("Category with this title is already exist");
+        }
+
         Category categoryToUpdate = getCategoryById(id);
         categoryToUpdate.setCategoryTitle(categoryDto.getCategoryTitle());
         return categoryRepository.save(categoryToUpdate);

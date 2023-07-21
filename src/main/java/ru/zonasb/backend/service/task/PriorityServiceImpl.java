@@ -24,6 +24,7 @@ public class PriorityServiceImpl implements PriorityService {
 
     @Override
     public Priority createNewPriority(final PriorityDto priorityDto) {
+
         if (priorityRepository.findPriorityByTitle(priorityDto.getTitle()).isPresent()) {
             throw new IllegalArgumentException("Priority with this title is already exist");
         }
@@ -33,6 +34,8 @@ public class PriorityServiceImpl implements PriorityService {
         if (priorityRepository.findPriorityByColor(priorityDto.getColor()).isPresent()) {
             throw new IllegalArgumentException("Priority with this color is already exist");
         }
+
+        System.out.println(priorityDto.getWeight());
 
         Priority priority = Priority.builder()
                 .title(priorityDto.getTitle())
@@ -56,20 +59,14 @@ public class PriorityServiceImpl implements PriorityService {
 
     @Override
     public Priority updatePriority(final Long id, final PriorityDto priorityDto) {
-        if (priorityRepository.findPriorityByTitle(priorityDto.getTitle()).isPresent()) {
-            throw new IllegalArgumentException("Priority with this title is already exist");
-        }
-        if (priorityRepository.findPriorityByWeight(priorityDto.getWeight()).isPresent()) {
-            throw new IllegalArgumentException("Priority with this weight is already exist");
-        }
-        if (priorityRepository.findPriorityByColor(priorityDto.getColor()).isPresent()) {
-            throw new IllegalArgumentException("Priority with this color is already exist");
-        }
+
         Priority priorityToUpdate = getPriorityById(id);
         priorityToUpdate.setTitle(priorityDto.getTitle());
         priorityToUpdate.setWeight(priorityDto.getWeight());
         priorityToUpdate.setColor(priorityDto.getColor());
-        return priorityToUpdate;
+
+        return priorityRepository.save(priorityToUpdate);
+
     }
 
     @Override
