@@ -54,7 +54,8 @@ dependencies {
 			'org.springdoc:springdoc-openapi-starter-webmvc-ui:2.1.0',
 			'org.liquibase:liquibase-core',
 			'com.querydsl:querydsl-jpa:5.0.0:jakarta',
-			'com.squareup.okhttp3:okhttp:4.9.1'
+			'com.squareup.okhttp3:okhttp:4.9.1',
+
 	)
 
 	liquibaseRuntime(

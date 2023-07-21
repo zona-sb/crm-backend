@@ -8,11 +8,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Min;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Pattern;
-import jakarta.validation.constraints.Size;
+import jakarta.validation.constraints.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Getter;
@@ -36,16 +32,20 @@ public class Priority {
     @NotBlank(message = "Priority title should not be Empty")
     @Size(max = 255)
     @Column(name = "title", unique = true)
+    @Pattern(regexp = "^.*$")
     private String title;
 
-    @Pattern(regexp = "^#[0-9a-fA-F]{6}$",
-            message = "Color code must be a valid HEX color")
+    @Pattern(regexp = "^#([A-Fa-f0-9]{6})$",
+            message = "Color code must be a valid 6-digit HEX color")
+    @NotBlank
     @Column(name = "color", unique = true)
     private String color;
 
     @NotNull(message = "Priority weight cannot be null")
-    @Min(value = 1, message = "Priority weight must be greater than 0")
-    @Column(name = "priority_weight", unique = true)
+    @Min(value = 1, message = "Priority weight must be a positive integer")
+    @Positive
+    @Digits(integer = 10, fraction = 0)
+    @Column(name = "priority_weight", unique = true, columnDefinition = "INT")
     private int weight;
 
     //    Связи
