@@ -38,7 +38,7 @@ public class CategoryController {
             @ApiResponse(responseCode = "404", description = "Category with this id does not exist")
     })
     @GetMapping(ID)
-    public Category getCategoryById(@PathVariable Long id) {
+    public Category getCategoryById(@PathVariable long id) {
         return categoryService.getCategoryById(id);
     }
 
@@ -67,7 +67,7 @@ public class CategoryController {
             @ApiResponse(responseCode = "404", description = "Category with this id does not exist")
     })
     @PutMapping(ID)
-    public Category updateCategory(@PathVariable Long id, @RequestBody @Valid CategoryDto categoryDto) {
+    public Category updateCategory(@PathVariable long id, @RequestBody @Valid CategoryDto categoryDto) {
         return categoryService.updateCategory(id, categoryDto);
     }
 

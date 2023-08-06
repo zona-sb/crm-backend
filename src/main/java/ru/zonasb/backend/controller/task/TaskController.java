@@ -40,7 +40,7 @@ public class TaskController {
             @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
     })
     @GetMapping(ID)
-    public Task getTaskById(@PathVariable Long id) {
+    public Task getTaskById(@PathVariable long id) {
         return taskService.getTaskById(id);
     }
 
@@ -69,7 +69,7 @@ public class TaskController {
             @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
     })
     @PutMapping(ID)
-    public Task updateTask(@PathVariable Long id,  @RequestBody @Valid TaskDto taskDto) {
+    public Task updateTask(@PathVariable long id,  @RequestBody @Valid TaskDto taskDto) {
         return taskService.updateTask(id, taskDto);
     }
 
@@ -79,7 +79,7 @@ public class TaskController {
             @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
     })
     @PatchMapping(ID)
-    public Task patchUpdateTask(@PathVariable Long id, @RequestBody Map<String, Object> update) {
+    public Task patchUpdateTask(@PathVariable long id, @RequestBody Map<String, Object> update) {
         return taskService.patchUpdateTask(id, update);
     }
 
