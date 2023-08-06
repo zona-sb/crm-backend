@@ -59,7 +59,6 @@ public class StatusServiceImpl implements StatusService {
         return statusRepository.save(statusToUpdate);
     }
 
-
     @Override
     public void deleteStatusById(final Long id) {
         Status status = getStatusById(id);

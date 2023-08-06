@@ -51,7 +51,7 @@ public class PriorityController {
 
     @Operation(summary = "Create new Priority")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "201", description = "Priority was successfully created")
+            @ApiResponse(responseCode = "201", description = "Priority created")
     })
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
@@ -61,7 +61,7 @@ public class PriorityController {
 
     @Operation(summary = "Update Priority by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Priority with this id was successfully updated"),
+            @ApiResponse(responseCode = "200", description = "Priority updated"),
             @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
     })
     @PutMapping(ID)
@@ -69,19 +69,19 @@ public class PriorityController {
         return priorityService.updatePriority(id, priorityDto);
     }
 
-    @Operation(summary = "Partial update task by id")
+    @Operation(summary = "Partial update priority by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Task with this id was successfully updated"),
-            @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
+            @ApiResponse(responseCode = "200", description = "Priority updated"),
+            @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
     })
     @PatchMapping(ID)
     public Priority patchUpdatePriority(@PathVariable Long id, @RequestBody Map<String, Object> update) {
         return priorityService.patchUpdatePriority(id, update);
     }
 
-    @Operation(summary = "Delete Priority by id")
+    @Operation(summary = "Delete priority by id")
     @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Priority with this id was successfully deleted"),
+            @ApiResponse(responseCode = "200", description = "Priority deleted"),
             @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
     })
     @DeleteMapping(ID)
