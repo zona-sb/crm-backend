@@ -78,8 +78,18 @@ public class StatusController {
             @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
     })
     @DeleteMapping(ID)
-    public void deleteStatusById(@PathVariable Long id) {
+    public void deleteStatusById(@PathVariable long id) {
         statusService.deleteStatusById(id);
+    }
+
+    @Operation(summary = "Delete multiple statuses by id list")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Some statuses were deleted"),
+            @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
+    })
+    @DeleteMapping("/bulk")
+    public void bulkDeleteStatusByIds(@RequestBody List<Long> ids) {
+        statusService.bulkDeleteStatus(ids);
     }
 
 }

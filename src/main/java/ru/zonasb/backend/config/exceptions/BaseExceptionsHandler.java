@@ -1,10 +1,12 @@
 package ru.zonasb.backend.config.exceptions;
 
 import org.springframework.dao.DataIntegrityViolationException;
+import org.springframework.http.ResponseEntity;
 import org.springframework.http.converter.HttpMessageNotReadableException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
+import org.springframework.web.bind.MissingPathVariableException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -61,4 +63,5 @@ public class BaseExceptionsHandler {
     public String userNitFoundExceptionHandler(UsernameNotFoundException exception) {
         return exception.getMessage();
     }
+
 }

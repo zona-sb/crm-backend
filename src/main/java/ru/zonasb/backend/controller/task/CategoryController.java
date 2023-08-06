@@ -6,6 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.server.ResponseStatusException;
 import ru.zonasb.backend.dto.task.CategoryDto;
 import ru.zonasb.backend.model.tasks.Category;
 import ru.zonasb.backend.service.task.interfase.CategoryService;
@@ -78,7 +80,17 @@ public class CategoryController {
             @ApiResponse(responseCode = "404", description = "Category with this id does not exist")
     })
     @DeleteMapping(ID)
-    public void deleteCategoryById(@PathVariable Long id) {
+    public void deleteCategoryById(@PathVariable long id) {
         categoryService.deleteCategoryById(id);
+    }
+
+    @Operation(summary = "Delete multiple categories by id list")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Some categories were deleted"),
+            @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
+    })
+    @DeleteMapping("/bulk")
+    public void bulkDeleteCategoryByIds(@RequestBody List<Long> ids) {
+        categoryService.bulkDeleteCategory(ids);
     }
 }

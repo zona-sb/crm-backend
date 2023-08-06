@@ -8,6 +8,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -20,6 +21,7 @@ import ru.zonasb.backend.model.tasks.Task;
 import ru.zonasb.backend.service.task.interfase.TaskService;
 
 import java.util.List;
+import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -67,8 +69,18 @@ public class TaskController {
             @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
     })
     @PutMapping(ID)
-    public Task updateTask(@PathVariable Long id, @RequestBody @Valid TaskDto taskDto) {
+    public Task updateTask(@PathVariable Long id,  @RequestBody @Valid TaskDto taskDto) {
         return taskService.updateTask(id, taskDto);
+    }
+
+    @Operation(summary = "Partial update task by id")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Task with this id was successfully updated"),
+            @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
+    })
+    @PatchMapping(ID)
+    public Task patchUpdateTask(@PathVariable Long id, @RequestBody Map<String, Object> update) {
+        return taskService.patchUpdateTask(id, update);
     }
 
 
@@ -78,8 +90,18 @@ public class TaskController {
             @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
     })
     @DeleteMapping(ID)
-    public void deleteTaskById(@PathVariable Long id) {
+    public void deleteTaskById(@PathVariable long id) {
         taskService.deleteTaskById(id);
+    }
+
+    @Operation(summary = "Delete multiple tasks by id list")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Some tasks were deleted"),
+            @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
+    })
+    @DeleteMapping("/bulk")
+    public void bulkDeleteTaskByIds(@RequestBody List<Long> ids) {
+        taskService.bulkDeleteTask(ids);
     }
 
 }

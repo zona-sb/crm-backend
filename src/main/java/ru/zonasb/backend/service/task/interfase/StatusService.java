@@ -15,4 +15,6 @@ public interface StatusService {
     Status updateStatus(Long id, StatusDto statusDto);
 
     void deleteStatusById(Long id);
+
+    void bulkDeleteStatus(List<Long> ids);
 }

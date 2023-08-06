@@ -19,6 +19,7 @@ import lombok.Setter;
 import ru.zonasb.backend.model.people.Client;
 import ru.zonasb.backend.model.people.Manager;
 
+import java.time.LocalDate;
 import java.util.Date;
 
 @Entity
@@ -38,9 +39,9 @@ public class Task {
     private String address;
 
     @NotNull(message = "Date should not be Empty")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd")
     @Column(name = "communication_date")
-    private Date date;
+    private LocalDate date;
 
     @Column(name = "operation_number", unique = true)
     private Integer operationNumber;
