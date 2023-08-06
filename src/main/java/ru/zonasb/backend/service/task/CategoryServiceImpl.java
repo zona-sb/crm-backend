@@ -1,8 +1,10 @@
 package ru.zonasb.backend.service.task;
 
 import lombok.AllArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.server.ResponseStatusException;
 import ru.zonasb.backend.dto.task.CategoryDto;
 import ru.zonasb.backend.model.tasks.Category;
 import ru.zonasb.backend.model.tasks.Status;
@@ -45,7 +47,7 @@ public class CategoryServiceImpl implements CategoryService {
     @Override
     public Category getCategoryById(final Long id) {
         return categoryRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Category with this id is not found"));
+                .orElseThrow(() -> new NoSuchElementException("Category with this id " + id + " is not found"));
     }
 
     @Override
@@ -59,20 +61,34 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.save(categoryToUpdate);
     }
 
-
     @Override
     public void deleteCategoryById(final Long id) {
 
-        Optional<List<Task>> optionalTasks = taskRepository.findTaskByCategory(getCategoryById(id));
-        optionalTasks.ifPresent(tasks -> {
-            taskRepository.deleteAll(tasks);
-        });
+        if (id == null || id <= 0) {
+            throw new IllegalArgumentException("Invalid category id");
+        }
 
-        Optional<List<Status>> optionalStatuses = statusRepository.findStatusByCategory(getCategoryById(id));
-        optionalStatuses.ifPresent(statuses -> {
-            statusRepository.deleteAll(statuses);
-        });
+        String idString = String.valueOf(id);
+        if (idString.contains(" ")) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT, "Invalid category id");
+        }
+
+        Category category = getCategoryById(id);
+
+        Optional<List<Task>> optionalTasks = taskRepository.findTaskByCategory(category);
+        optionalTasks.ifPresent(tasks -> taskRepository.deleteAll(tasks));
+
+        Optional<List<Status>> optionalStatuses = statusRepository.findStatusByCategory(category);
+        optionalStatuses.ifPresent(statuses -> statusRepository.deleteAll(statuses));
 
         categoryRepository.deleteById(id);
     }
+
+    @Override
+    public void bulkDeleteCategory(List<Long> ids) {
+        ids.forEach(this::deleteCategoryById);
+    }
+
+
 }

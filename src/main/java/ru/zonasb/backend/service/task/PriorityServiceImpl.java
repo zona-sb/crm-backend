@@ -11,6 +11,7 @@ import ru.zonasb.backend.repository.TaskRepository;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
 import java.util.List;
+import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -54,7 +55,7 @@ public class PriorityServiceImpl implements PriorityService {
     @Override
     public Priority getPriorityById(final Long id) {
         return priorityRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Priority with this id is not found"));
+                .orElseThrow(() -> new NoSuchElementException("Priority with id " + id + " is not found"));
     }
 
     @Override
@@ -70,13 +71,37 @@ public class PriorityServiceImpl implements PriorityService {
     }
 
     @Override
-    public void deletePriorityById(final Long id) {
+    public Priority patchUpdatePriority(Long id, Map<String, Object> update) {
 
-        Optional<List<Task>> optionalTasks = taskRepository.findTaskByPriority(getPriorityById(id));
-        optionalTasks.ifPresent(tasks -> {
-            taskRepository.deleteAll(tasks);
-        });
+        Priority priorityToUpdate = getPriorityById(id);
+
+        if (update.containsKey("title")) {
+            priorityToUpdate.setTitle((String) update.get("title"));
+        }
+
+        if (update.containsKey("color")) {
+            priorityToUpdate.setColor((String) update.get("color"));
+        }
+
+        if (update.containsKey("weight")) {
+            priorityToUpdate.setWeight((Integer) update.get("weight"));
+        }
+
+        return priorityRepository.save(priorityToUpdate);
+    }
+
+    @Override
+    public void deletePriorityById(final Long id) {
+        Priority priority = getPriorityById(id);
+
+        Optional<List<Task>> optionalTasks = taskRepository.findTaskByPriority(priority);
+        optionalTasks.ifPresent(tasks -> taskRepository.deleteAll(tasks));
 
         priorityRepository.deleteById(id);
+    }
+
+    @Override
+    public void bulkDeletePriority(List<Long> ids) {
+        ids.forEach(this::deletePriorityById);
     }
 }
