@@ -1,10 +1,13 @@
 package ru.zonasb.backend.dto.task;
 
-import com.fasterxml.jackson.annotation.*;
-import jakarta.validation.constraints.*;
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 
-import java.util.*;
+import java.time.LocalDate;
 
 @Data
 @NoArgsConstructor
@@ -15,8 +18,8 @@ public class TaskDto {
     private String address;
 
     @NotNull(message = "Date should not be Empty")
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-mm-dd")
-    private Date date;
+    @JsonFormat(pattern="yyyy-MM-dd")
+    private LocalDate date;
 
     private Integer operationNumber;
 
@@ -31,8 +34,10 @@ public class TaskDto {
 
     private Long priorityId;
 
+    @NotNull
     private Long managerId;
 
+    @NotNull
     private Long clientId;
 
 }

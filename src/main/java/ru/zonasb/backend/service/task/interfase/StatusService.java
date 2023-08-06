@@ -1,9 +1,11 @@
 package ru.zonasb.backend.service.task.interfase;
 
 import ru.zonasb.backend.dto.task.StatusDto;
+import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.model.tasks.Status;
 
 import java.util.List;
+import java.util.Map;
 
 public interface StatusService {
     Status createNewStatus(StatusDto statusDto);
@@ -15,4 +17,6 @@ public interface StatusService {
     Status updateStatus(Long id, StatusDto statusDto);
 
     void deleteStatusById(Long id);
+
+    void bulkDeleteStatus(List<Long> ids);
 }

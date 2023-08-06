@@ -42,7 +42,7 @@ public class StatusServiceImpl implements StatusService {
     @Override
     public Status getStatusById(final Long id) {
         return statusRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Status with this id is not found"));
+                .orElseThrow(() -> new NoSuchElementException("Status with id " + id + " is not found"));
     }
 
     @Override
@@ -59,15 +59,19 @@ public class StatusServiceImpl implements StatusService {
         return statusRepository.save(statusToUpdate);
     }
 
-
     @Override
     public void deleteStatusById(final Long id) {
         Status status = getStatusById(id);
         Category category = status.getCategory();
+
         Optional<List<Task>> optionalTasks = taskRepository.findTaskByCategoryAndStatus(category, status);
-        optionalTasks.ifPresent(tasks -> {
-            taskRepository.deleteAll(tasks);
-        });
+        optionalTasks.ifPresent(tasks -> taskRepository.deleteAll(tasks));
+
         statusRepository.deleteById(id);
+    }
+
+    @Override
+    public void bulkDeleteStatus(List<Long> ids) {
+        ids.forEach(this::deleteStatusById);
     }
 }
