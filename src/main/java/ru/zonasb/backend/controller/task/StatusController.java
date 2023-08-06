@@ -38,7 +38,7 @@ public class StatusController {
             @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
     })
     @GetMapping(ID)
-    public Status getStatusById(@PathVariable Long id) {
+    public Status getStatusById(@PathVariable long id) {
         return statusService.getStatusById(id);
     }
 
@@ -67,7 +67,7 @@ public class StatusController {
             @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
     })
     @PutMapping(ID)
-    public Status updateStatus(@PathVariable Long id, @RequestBody @Valid StatusDto statusDto) {
+    public Status updateStatus(@PathVariable long id, @RequestBody @Valid StatusDto statusDto) {
         return statusService.updateStatus(id, statusDto);
     }
 

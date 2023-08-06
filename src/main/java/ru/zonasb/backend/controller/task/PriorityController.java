@@ -38,7 +38,7 @@ public class PriorityController {
             @ApiResponse(responseCode = "404", description = "Priority with the given id does not exist")
     })
     @GetMapping(ID)
-    public Priority getPriorityById(@PathVariable Long id) {
+    public Priority getPriorityById(@PathVariable long id) {
         return priorityService.getPriorityById(id);
     }
 
@@ -49,7 +49,7 @@ public class PriorityController {
         return priorityService.getAllPriorities();
     }
 
-    @Operation(summary = "Create new Priority")
+    @Operation(summary = "Create new priority")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Priority created")
     })
@@ -59,13 +59,13 @@ public class PriorityController {
         return priorityService.createNewPriority(priorityDto);
     }
 
-    @Operation(summary = "Update Priority by id")
+    @Operation(summary = "Update priority by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Priority updated"),
             @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
     })
     @PutMapping(ID)
-    public Priority updatePriority(@PathVariable Long id, @RequestBody @Valid PriorityDto priorityDto) {
+    public Priority updatePriority(@PathVariable long id, @RequestBody @Valid PriorityDto priorityDto) {
         return priorityService.updatePriority(id, priorityDto);
     }
 
@@ -75,7 +75,7 @@ public class PriorityController {
             @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
     })
     @PatchMapping(ID)
-    public Priority patchUpdatePriority(@PathVariable Long id, @RequestBody Map<String, Object> update) {
+    public Priority patchUpdatePriority(@PathVariable long id, @RequestBody Map<String, Object> update) {
         return priorityService.patchUpdatePriority(id, update);
     }
 
