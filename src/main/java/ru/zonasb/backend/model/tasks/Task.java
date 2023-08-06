@@ -20,7 +20,6 @@ import ru.zonasb.backend.model.people.Client;
 import ru.zonasb.backend.model.people.Manager;
 
 import java.time.LocalDate;
-import java.util.Date;
 
 @Entity
 @Setter

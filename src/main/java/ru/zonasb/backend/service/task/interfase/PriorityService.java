@@ -2,7 +2,6 @@ package ru.zonasb.backend.service.task.interfase;
 
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
-import ru.zonasb.backend.model.tasks.Task;
 
 import java.util.List;
 import java.util.Map;

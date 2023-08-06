@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
-import ru.zonasb.backend.model.tasks.Task;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
 import java.util.List;

@@ -10,7 +10,6 @@ import ru.zonasb.backend.repository.PriorityRepository;
 import ru.zonasb.backend.repository.TaskRepository;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
