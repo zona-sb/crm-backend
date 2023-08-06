@@ -74,14 +74,16 @@ public class WorkerServiceImpl implements WorkerService {
 
     @Override
     public Worker updateWorkerById(final long id, final WorkerDto workerDto) {
-        if (personRepository.findPersonByEmail(workerDto.getEmail()).isPresent()) {
+        Worker worker = getWorkerById(id);
+        Person person = worker.getPerson();
+        if (!worker.getPerson().getEmail().equals(workerDto.getEmail())
+                && personRepository.findPersonByEmail(workerDto.getEmail()).isPresent()) {
             throw new IllegalArgumentException("worker with that email is already exist");
         }
-        if (personRepository.findPersonByPhone(workerDto.getPhone()).isPresent()) {
+        if (!worker.getPerson().getPhone().equals(workerDto.getPhone())
+                && personRepository.findPersonByPhone(workerDto.getPhone()).isPresent()) {
             throw new IllegalArgumentException("worker with that phone is already exist");
         }
-        Worker worker = getWorkerById(id);
-        Person person = personService.getPersonById(worker.getPerson().getId());
         person.setName(workerDto.getName());
         person.setEmail(workerDto.getEmail());
         person.setPhone(workerDto.getPhone());

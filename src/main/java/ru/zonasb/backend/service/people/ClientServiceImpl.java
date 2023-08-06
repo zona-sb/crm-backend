@@ -30,6 +30,18 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
+    public Client getClientByEmail(String email) {
+        return clientRepository.findClientByPersonEmail(email)
+                .orElseThrow(() -> new NoSuchElementException("client with that email is not found"));
+    }
+
+    @Override
+    public Client getClientByPhone(String phone) {
+        return clientRepository.findClientByPersonPhone(phone)
+                .orElseThrow(() -> new NoSuchElementException("client with that phone is not found"));
+    }
+
+    @Override
     public List<Client> getAllClients() {
         return clientRepository.findAll();
     }
@@ -60,14 +72,19 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public Client updateClientById(final long id, final ClientDto clientDto) {
-        if (personRepository.findPersonByEmail(clientDto.getEmail()).isPresent()) {
+        Client client = getClientById(id);
+        Person person = client.getPerson();
+
+        if (!client.getPerson().getEmail().equals(clientDto.getEmail())
+                && personRepository.findPersonByEmail(clientDto.getEmail()).isPresent()) {
             throw new IllegalArgumentException("client with that email is already exist");
         }
-        if (personRepository.findPersonByPhone(clientDto.getPhone()).isPresent()) {
+
+        if (!client.getPerson().getPhone().equals(clientDto.getPhone())
+                && personRepository.findPersonByPhone(clientDto.getPhone()).isPresent()) {
             throw new IllegalArgumentException("client with that phone is already exist");
         }
-        Client client = getClientById(id);
-        Person person = personService.getPersonById(client.getPerson().getId());
+
         person.setPhone(clientDto.getPhone());
         person.setName(clientDto.getName());
         person.setEmail(clientDto.getEmail());
@@ -80,7 +97,6 @@ public class ClientServiceImpl implements ClientService {
 
     @Override
     public void deleteById(final long id) {
-
         personRepository.deleteById(getClientById(id).getPerson().getId());
     }
 }
