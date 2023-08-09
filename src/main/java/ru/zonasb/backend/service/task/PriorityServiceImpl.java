@@ -11,7 +11,6 @@ import ru.zonasb.backend.repository.TaskRepository;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 import java.util.Optional;
 
@@ -62,30 +61,24 @@ public class PriorityServiceImpl implements PriorityService {
     public Priority updatePriority(final Long id, final PriorityDto priorityDto) {
 
         Priority priorityToUpdate = getPriorityById(id);
+
+        if (!priorityToUpdate.getTitle().equals(priorityDto.getTitle())
+                && priorityRepository.findPriorityByTitle(priorityDto.getTitle()).isPresent()) {
+            throw new IllegalArgumentException("Priority with this title is already exist");
+        }
+        if (priorityToUpdate.getWeight() != priorityDto.getWeight()
+                && priorityRepository.findPriorityByWeight(priorityDto.getWeight()).isPresent()) {
+            throw new IllegalArgumentException("Priority with this weight is already exist");
+        }
+
+        if (!priorityToUpdate.getColor().equals(priorityDto.getColor())
+                && priorityRepository.findPriorityByColor(priorityDto.getColor()).isPresent()) {
+            throw new IllegalArgumentException("Priority with this color is already exist");
+        }
+
         priorityToUpdate.setTitle(priorityDto.getTitle());
         priorityToUpdate.setWeight(priorityDto.getWeight());
         priorityToUpdate.setColor(priorityDto.getColor());
-
-        return priorityRepository.save(priorityToUpdate);
-
-    }
-
-    @Override
-    public Priority patchUpdatePriority(Long id, Map<String, Object> update) {
-
-        Priority priorityToUpdate = getPriorityById(id);
-
-        if (update.containsKey("title")) {
-            priorityToUpdate.setTitle((String) update.get("title"));
-        }
-
-        if (update.containsKey("color")) {
-            priorityToUpdate.setColor((String) update.get("color"));
-        }
-
-        if (update.containsKey("weight")) {
-            priorityToUpdate.setWeight((Integer) update.get("weight"));
-        }
 
         return priorityRepository.save(priorityToUpdate);
     }

@@ -8,7 +8,6 @@ import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PatchMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
@@ -21,7 +20,6 @@ import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
 import java.util.List;
-import java.util.Map;
 
 @AllArgsConstructor
 @RestController
@@ -32,7 +30,7 @@ public class PriorityController {
     public static final String ID = "/{id}";
     private final PriorityService priorityService;
 
-    @Operation(summary = "Get Priority by ID. Return 404 if priority not found")
+    @Operation(summary = "Get priority by ID. Return 404 if priority not found")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Priority found"),
             @ApiResponse(responseCode = "404", description = "Priority with the given id does not exist")
@@ -42,7 +40,7 @@ public class PriorityController {
         return priorityService.getPriorityById(id);
     }
 
-    @Operation(summary = "Get all Categories")
+    @Operation(summary = "Get all priorities")
     @ApiResponse(responseCode = "200", description = "Priorities found")
     @GetMapping
     public List<Priority> getAllPriorities() {
@@ -69,17 +67,7 @@ public class PriorityController {
         return priorityService.updatePriority(id, priorityDto);
     }
 
-    @Operation(summary = "Partial update priority by id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Priority updated"),
-            @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
-    })
-    @PatchMapping(ID)
-    public Priority patchUpdatePriority(@PathVariable long id, @RequestBody Map<String, Object> update) {
-        return priorityService.patchUpdatePriority(id, update);
-    }
-
-    @Operation(summary = "Delete priority by id")
+    @Operation(summary = "Delete priority by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Priority deleted"),
             @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
@@ -89,10 +77,10 @@ public class PriorityController {
         priorityService.deletePriorityById(id);
     }
 
-    @Operation(summary = "Delete multiple priorities by id list")
+    @Operation(summary = "Delete multiple priorities by ID list")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Some priorities were deleted"),
-            @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
+            @ApiResponse(responseCode = "400", description = "The given ID list contained invalid values")
     })
     @DeleteMapping("/bulk")
     public void bulkDeletePriorityByIds(@RequestBody List<Long> ids) {

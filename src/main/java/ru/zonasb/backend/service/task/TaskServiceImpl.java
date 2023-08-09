@@ -14,7 +14,6 @@ import ru.zonasb.backend.service.task.interfase.TaskService;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.Map;
 import java.util.NoSuchElementException;
 
 
@@ -66,7 +65,6 @@ public class TaskServiceImpl implements TaskService {
                 .orElseThrow(() -> new NoSuchElementException("Task with id " + id + " is not found"));
     }
 
-
     @Override
     public Task updateTask(final Long id, final TaskDto taskDto) {
 
@@ -80,6 +78,10 @@ public class TaskServiceImpl implements TaskService {
 
         taskToUpdate.setAddress(taskDto.getAddress());
         taskToUpdate.setDate(taskDto.getDate());
+        if (!taskToUpdate.getOperationNumber().equals(taskDto.getOperationNumber())
+                && taskRepository.findTaskByOperationNumber(taskDto.getOperationNumber()).isPresent()) {
+            throw new IllegalArgumentException("Task with this operation number is already exist");
+        }
         taskToUpdate.setOperationNumber(taskDto.getOperationNumber());
         taskToUpdate.setComment(taskDto.getComment());
         taskToUpdate.setCompleted(taskDto.getCompleted());
@@ -88,70 +90,6 @@ public class TaskServiceImpl implements TaskService {
         taskToUpdate.setPriority(priorityService.getPriorityById(taskDto.getPriorityId()));
         taskToUpdate.setManager(managerService.getManagerById(taskDto.getManagerId()));
         taskToUpdate.setClient(clientService.getClientById(taskDto.getClientId()));
-
-        return taskRepository.save(taskToUpdate);
-    }
-
-    @Override
-    public Task patchUpdateTask(Long id, Map<String, Object> update) {
-
-        Task taskToUpdate = getTaskById(id);
-
-        if (update.containsKey("address")) {
-            taskToUpdate.setAddress((String) update.get("address"));
-        }
-
-        if (update.containsKey("date")) {
-            LocalDate today = LocalDate.now();
-            LocalDate date = (LocalDate) update.get("date");
-
-            if (date.isBefore(today)) {
-                throw new IllegalArgumentException("The date must be no earlier than today");
-            }
-
-            taskToUpdate.setDate((LocalDate) update.get("date"));
-        }
-
-        if (update.containsKey("operationNumber")) {
-            taskToUpdate.setOperationNumber((Integer) update.get("operationNumber"));
-        }
-
-        if (update.containsKey("comment")) {
-            taskToUpdate.setComment((String) update.get("comment"));
-        }
-
-        if (update.containsKey("completed")) {
-            taskToUpdate.setCompleted((Boolean) update.get("completed"));
-        }
-
-        if (update.containsKey("statusId")) {
-            Long statusId = (Long) update.get("statusId");
-            taskToUpdate.setStatus(statusService.getStatusById(statusId));
-        }
-
-
-        if (update.containsKey("categoryId")) {
-            Long categoryId = (Long) update.get("categoryId");
-            taskToUpdate.setCategory(categoryService.getCategoryById(categoryId));
-        }
-
-
-        if (update.containsKey("priorityId")) {
-            Long priorityId = (Long) update.get("priorityId");
-            taskToUpdate.setPriority(priorityService.getPriorityById(priorityId));
-        }
-
-
-        if (update.containsKey("managerId")) {
-            Long managerId = (Long) update.get("managerId");
-            taskToUpdate.setManager(managerService.getManagerById(managerId));
-        }
-
-
-        if (update.containsKey("clientId")) {
-            Long clientId = (Long) update.get("clientId");
-            taskToUpdate.setClient(clientService.getClientById(clientId));
-        }
 
         return taskRepository.save(taskToUpdate);
     }
