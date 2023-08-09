@@ -28,11 +28,10 @@ public class CategoryController {
 
     public static final String CATEGORY_CONTROLLER_PATH = "/categories";
     public static final String ID = "/{id}";
-
     private final CategoryService categoryService;
 
 
-    @Operation(summary = "Get Category by ID")
+    @Operation(summary = "Get category by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category with this id was successfully found"),
             @ApiResponse(responseCode = "404", description = "Category with this id does not exist")
@@ -42,7 +41,7 @@ public class CategoryController {
         return categoryService.getCategoryById(id);
     }
 
-    @Operation(summary = "Get all Categories")
+    @Operation(summary = "Get all categories")
     @ApiResponse(responseCode = "200", description = "Categories were successfully found")
     @GetMapping
     public List<Category> getAllCategories() {
@@ -50,7 +49,7 @@ public class CategoryController {
     }
 
 
-    @Operation(summary = "Create new Category")
+    @Operation(summary = "Create new category")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Category was successfully created")
     })
@@ -61,7 +60,7 @@ public class CategoryController {
     }
 
 
-    @Operation(summary = "Update Category by id")
+    @Operation(summary = "Update category by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category with this id was successfully updated"),
             @ApiResponse(responseCode = "404", description = "Category with this id does not exist")
@@ -72,7 +71,7 @@ public class CategoryController {
     }
 
 
-    @Operation(summary = "Delete Category by id")
+    @Operation(summary = "Delete category by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Category with this id was successfully deleted"),
             @ApiResponse(responseCode = "404", description = "Category with this id does not exist")

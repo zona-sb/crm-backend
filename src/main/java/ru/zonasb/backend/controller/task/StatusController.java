@@ -28,11 +28,10 @@ public class StatusController {
 
     public static final String STATUS_CONTROLLER_PATH = "/statuses";
     public static final String ID = "/{id}";
-
     private final StatusService statusService;
 
 
-    @Operation(summary = "Get Status by ID")
+    @Operation(summary = "Get status by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Status with this id was successfully found"),
             @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
@@ -42,7 +41,7 @@ public class StatusController {
         return statusService.getStatusById(id);
     }
 
-    @Operation(summary = "Get all Categories")
+    @Operation(summary = "Get all statuses")
     @ApiResponse(responseCode = "200", description = "Statuses were successfully found")
     @GetMapping
     public List<Status> getAllStatuses() {
@@ -50,7 +49,7 @@ public class StatusController {
     }
 
 
-    @Operation(summary = "Create new Status")
+    @Operation(summary = "Create new status")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Status was successfully created")
     })
@@ -61,7 +60,7 @@ public class StatusController {
     }
 
 
-    @Operation(summary = "Update Status by id")
+    @Operation(summary = "Update status by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Status with this id was successfully updated"),
             @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
@@ -72,7 +71,7 @@ public class StatusController {
     }
 
 
-    @Operation(summary = "Delete Status by id")
+    @Operation(summary = "Delete status by ID")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Status with this id was successfully deleted"),
             @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
@@ -82,7 +81,7 @@ public class StatusController {
         statusService.deleteStatusById(id);
     }
 
-    @Operation(summary = "Delete multiple statuses by id list")
+    @Operation(summary = "Delete multiple statuses by ID list")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Some statuses were deleted"),
             @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
