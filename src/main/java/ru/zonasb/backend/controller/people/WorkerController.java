@@ -5,6 +5,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.people.WorkerDto;
 import ru.zonasb.backend.model.people.Worker;
 import ru.zonasb.backend.service.people.interfase.WorkerService;
@@ -49,8 +50,8 @@ public class WorkerController {
         return workerService.createMySelfAsWorker();
     }
 
-    @DeleteMapping(ID)
-    public void deleteWorkerById(@PathVariable long id) {
-        workerService.deleteWorkerById(id);
+    @DeleteMapping()
+    public void deleteWorkerById(@RequestBody DeleteDto deleteDto) {
+        workerService.deleteWorkers(deleteDto);
     }
 }

@@ -25,7 +25,7 @@ public class Client {
     @Column(name = "comment")
     private String comment;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "person_id", referencedColumnName = "id")
     private Person person;
 

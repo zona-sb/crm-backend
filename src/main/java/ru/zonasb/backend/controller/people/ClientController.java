@@ -4,6 +4,7 @@ import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.people.ClientDto;
 import ru.zonasb.backend.model.people.Client;
 import ru.zonasb.backend.service.people.interfase.ClientService;
@@ -41,9 +42,9 @@ public class ClientController {
         return clientService.updateClientById(id,clientDto);
     }
 
-    @DeleteMapping(ID)
-    public void deleteClientById(@PathVariable long id) {
-        clientService.deleteById(id);
+    @DeleteMapping()
+    public void deleteClients(@RequestBody DeleteDto deleteDto) {
+        clientService.deleteClient(deleteDto);
     }
 
 }
