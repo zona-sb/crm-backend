@@ -1,5 +1,6 @@
 package ru.zonasb.backend.service.people.interfase;
 
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.people.ClientDto;
 import ru.zonasb.backend.model.people.Client;
 
@@ -12,5 +13,5 @@ public interface ClientService {
     List<Client> getAllClients();
     Client createNewClient(ClientDto clientDto);
     Client updateClientById(long id, ClientDto clientDto);
-    void deleteById(long id);
+    void deleteClient(DeleteDto deleteDto);
 }

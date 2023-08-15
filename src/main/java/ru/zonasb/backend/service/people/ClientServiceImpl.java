@@ -3,13 +3,13 @@ package ru.zonasb.backend.service.people;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.people.ClientDto;
 import ru.zonasb.backend.model.people.Client;
 import ru.zonasb.backend.model.people.Person;
 import ru.zonasb.backend.repository.ClientRepository;
 import ru.zonasb.backend.repository.PersonRepository;
 import ru.zonasb.backend.service.people.interfase.ClientService;
-import ru.zonasb.backend.service.people.interfase.PersonService;
 
 import java.util.List;
 import java.util.NoSuchElementException;
@@ -20,7 +20,6 @@ import java.util.NoSuchElementException;
 public class ClientServiceImpl implements ClientService {
     private final ClientRepository clientRepository;
     private final PersonRepository personRepository;
-    private final PersonService personService;
 
 
     @Override
@@ -96,7 +95,12 @@ public class ClientServiceImpl implements ClientService {
     }
 
     @Override
-    public void deleteById(final long id) {
-        personRepository.deleteById(getClientById(id).getPerson().getId());
+    public void deleteClient(DeleteDto deleteDto) {
+        if (deleteDto.isDeleteAll()) {
+            clientRepository.deleteAll();
+        }
+        clientRepository.deleteAllById(deleteDto.getIds());
     }
+
+
 }

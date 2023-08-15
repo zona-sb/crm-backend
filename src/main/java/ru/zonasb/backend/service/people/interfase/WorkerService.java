@@ -1,5 +1,6 @@
 package ru.zonasb.backend.service.people.interfase;
 
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.people.WorkerDto;
 import ru.zonasb.backend.model.people.Worker;
 
@@ -11,7 +12,7 @@ public interface WorkerService {
     Worker createNewWorker(WorkerDto workerDto);
     Worker createMySelfAsWorker();
     Worker updateWorkerById(long id, WorkerDto workerDto);
-    void deleteWorkerById(long id);
+    void deleteWorkers(DeleteDto deleteDto);
 
 
 }
