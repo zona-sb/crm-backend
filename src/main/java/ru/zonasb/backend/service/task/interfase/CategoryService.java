@@ -1,5 +1,6 @@
 package ru.zonasb.backend.service.task.interfase;
 
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.CategoryDto;
 import ru.zonasb.backend.model.tasks.Category;
 
@@ -14,7 +15,5 @@ public interface CategoryService {
 
     Category updateCategory(Long id, CategoryDto categoryDto);
 
-    void deleteCategoryById(Long id);
-
-    void bulkDeleteCategory(List<Long> ids);
+    void deleteCategory(DeleteDto deleteDto);
 }

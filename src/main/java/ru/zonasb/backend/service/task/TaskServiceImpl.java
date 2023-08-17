@@ -2,6 +2,7 @@ package ru.zonasb.backend.service.task;
 
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.TaskDto;
 import ru.zonasb.backend.model.tasks.Task;
 import ru.zonasb.backend.repository.TaskRepository;
@@ -35,6 +36,10 @@ public class TaskServiceImpl implements TaskService {
 
         if (taskDto.getDate().isBefore(today)) {
             throw new IllegalArgumentException("The date must be no earlier than today");
+        }
+
+        if (taskRepository.findTaskByOperationNumber(taskDto.getOperationNumber()).isPresent()) {
+            throw new IllegalArgumentException("Task with this operation number is already exist");
         }
 
         Task task = Task.builder()
@@ -95,14 +100,12 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public void deleteTaskById(final Long id) {
-        getTaskById(id);
-        taskRepository.deleteById(id);
-    }
-
-    @Override
-    public void bulkDeleteTask(List<Long> ids) {
-        ids.forEach(this::deleteTaskById);
+    public void deleteTask(DeleteDto deleteDto) {
+        if (deleteDto.isDeleteAll()) {
+            taskRepository.deleteAll();
+        } else {
+            taskRepository.deleteAllById(deleteDto.getIds());
+        }
     }
 
 }

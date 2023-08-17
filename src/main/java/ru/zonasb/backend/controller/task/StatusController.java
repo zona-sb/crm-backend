@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.StatusDto;
 import ru.zonasb.backend.model.tasks.Status;
 import ru.zonasb.backend.service.task.interfase.StatusService;
@@ -60,7 +61,7 @@ public class StatusController {
     }
 
 
-    @Operation(summary = "Update status by ID")
+    @Operation(summary = "Update status by id")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Status with this id was successfully updated"),
             @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
@@ -71,24 +72,14 @@ public class StatusController {
     }
 
 
-    @Operation(summary = "Delete status by ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Status with this id was successfully deleted"),
-            @ApiResponse(responseCode = "404", description = "Status with this id does not exist")
-    })
-    @DeleteMapping(ID)
-    public void deleteStatusById(@PathVariable long id) {
-        statusService.deleteStatusById(id);
-    }
-
-    @Operation(summary = "Delete multiple statuses by ID list")
+    @Operation(summary = "Delete statuses by id list")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Some statuses were deleted"),
             @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
     })
-    @DeleteMapping("/bulk")
-    public void bulkDeleteStatusByIds(@RequestBody List<Long> ids) {
-        statusService.bulkDeleteStatus(ids);
+    @DeleteMapping()
+    public void deleteStatuses(@RequestBody DeleteDto deleteDto) {
+        statusService.deleteStatus(deleteDto);
     }
 
 }

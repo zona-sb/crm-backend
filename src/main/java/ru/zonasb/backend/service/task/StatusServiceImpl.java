@@ -1,7 +1,10 @@
 package ru.zonasb.backend.service.task;
 
 import lombok.*;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.*;
+import org.springframework.web.server.ResponseStatusException;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.*;
 import ru.zonasb.backend.model.tasks.*;
 import ru.zonasb.backend.repository.*;
@@ -60,7 +63,16 @@ public class StatusServiceImpl implements StatusService {
     }
 
     @Override
+    public void deleteStatus(DeleteDto deleteDto) {
+        if (deleteDto.isDeleteAll()) {
+            statusRepository.deleteAll();
+        } else {
+            deleteDto.getIds().forEach(this::deleteStatusById);
+        }
+    }
+
     public void deleteStatusById(final Long id) {
+
         Status status = getStatusById(id);
         Category category = status.getCategory();
 
@@ -70,8 +82,4 @@ public class StatusServiceImpl implements StatusService {
         statusRepository.deleteById(id);
     }
 
-    @Override
-    public void bulkDeleteStatus(List<Long> ids) {
-        ids.forEach(this::deleteStatusById);
-    }
 }
