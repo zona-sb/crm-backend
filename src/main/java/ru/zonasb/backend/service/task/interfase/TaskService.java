@@ -1,5 +1,6 @@
 package ru.zonasb.backend.service.task.interfase;
 
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.TaskDto;
 import ru.zonasb.backend.model.tasks.Task;
 
@@ -14,8 +15,5 @@ public interface TaskService {
 
     Task updateTask(Long id, TaskDto taskDto);
 
-    void deleteTaskById(Long id);
-
-    void bulkDeleteTask(List<Long> ids);
-
+    void deleteTask(DeleteDto deleteDto);
 }

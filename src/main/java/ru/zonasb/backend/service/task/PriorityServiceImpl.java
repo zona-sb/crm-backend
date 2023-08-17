@@ -3,6 +3,7 @@ package ru.zonasb.backend.service.task;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.model.tasks.Task;
@@ -84,6 +85,15 @@ public class PriorityServiceImpl implements PriorityService {
     }
 
     @Override
+    public void deletePriority(DeleteDto deleteDto) {
+        if (deleteDto.isDeleteAll()) {
+            priorityRepository.deleteAll();
+        } else {
+            deleteDto.getIds().forEach(this::deletePriorityById);
+        }
+    }
+
+
     public void deletePriorityById(final Long id) {
         Priority priority = getPriorityById(id);
 
@@ -93,8 +103,4 @@ public class PriorityServiceImpl implements PriorityService {
         priorityRepository.deleteById(id);
     }
 
-    @Override
-    public void bulkDeletePriority(List<Long> ids) {
-        ids.forEach(this::deletePriorityById);
-    }
 }

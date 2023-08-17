@@ -1,5 +1,6 @@
 package ru.zonasb.backend.service.task.interfase;
 
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
 
@@ -15,7 +16,5 @@ public interface PriorityService {
 
     Priority updatePriority(Long id, PriorityDto priorityDto);
 
-    void deletePriorityById(Long id);
-
-    void bulkDeletePriority(List<Long> ids);
+    void deletePriority(DeleteDto deleteDto);
 }
