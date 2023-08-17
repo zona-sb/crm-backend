@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
@@ -67,24 +68,14 @@ public class PriorityController {
         return priorityService.updatePriority(id, priorityDto);
     }
 
-    @Operation(summary = "Delete priority by ID")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Priority deleted"),
-            @ApiResponse(responseCode = "404", description = "Priority with this id does not exist")
-    })
-    @DeleteMapping(ID)
-    public void deletePriorityById(@PathVariable long id) {
-        priorityService.deletePriorityById(id);
-    }
-
-    @Operation(summary = "Delete multiple priorities by ID list")
+    @Operation(summary = "Delete priorities by id list")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Some priorities were deleted"),
-            @ApiResponse(responseCode = "400", description = "The given ID list contained invalid values")
+            @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
     })
-    @DeleteMapping("/bulk")
-    public void bulkDeletePriorityByIds(@RequestBody List<Long> ids) {
-        priorityService.bulkDeletePriority(ids);
+    @DeleteMapping()
+    public void deletePriorities(@RequestBody DeleteDto deleteDto) {
+        priorityService.deletePriority(deleteDto);
     }
 
 }

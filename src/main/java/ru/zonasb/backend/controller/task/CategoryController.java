@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.CategoryDto;
 import ru.zonasb.backend.model.tasks.Category;
 import ru.zonasb.backend.service.task.interfase.CategoryService;
@@ -70,24 +71,13 @@ public class CategoryController {
         return categoryService.updateCategory(id, categoryDto);
     }
 
-
-    @Operation(summary = "Delete category by id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Category with this id was successfully deleted"),
-            @ApiResponse(responseCode = "404", description = "Category with this id does not exist")
-    })
-    @DeleteMapping(ID)
-    public void deleteCategoryById(@PathVariable long id) {
-        categoryService.deleteCategoryById(id);
-    }
-
-    @Operation(summary = "Delete multiple categories by id list")
+    @Operation(summary = "Delete categories by id list")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Some categories were deleted"),
             @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
     })
-    @DeleteMapping("/bulk")
-    public void bulkDeleteCategoryByIds(@RequestBody List<Long> ids) {
-        categoryService.bulkDeleteCategory(ids);
+    @DeleteMapping()
+    public void deleteCategories(@RequestBody DeleteDto deleteDto) {
+        categoryService.deleteCategory(deleteDto);
     }
 }

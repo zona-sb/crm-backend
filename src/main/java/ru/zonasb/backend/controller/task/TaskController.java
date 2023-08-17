@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.TaskDto;
 import ru.zonasb.backend.model.tasks.Task;
 import ru.zonasb.backend.service.task.interfase.TaskService;
@@ -68,24 +69,16 @@ public class TaskController {
         return taskService.updateTask(id, taskDto);
     }
 
-    @Operation(summary = "Delete task by id")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Task deleted"),
-            @ApiResponse(responseCode = "404", description = "Task with this id does not exist")
-    })
-    @DeleteMapping(ID)
-    public void deleteTaskById(@PathVariable long id) {
-        taskService.deleteTaskById(id);
-    }
 
-    @Operation(summary = "Delete multiple tasks by id list")
+    @Operation(summary = "Delete tasks by id list")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "200", description = "Some tasks were deleted"),
             @ApiResponse(responseCode = "400", description = "The given id list contained invalid values")
     })
-    @DeleteMapping("/bulk")
-    public void bulkDeleteTaskByIds(@RequestBody List<Long> ids) {
-        taskService.bulkDeleteTask(ids);
+    @DeleteMapping()
+    public void deleteTasks(@RequestBody DeleteDto deleteDto) {
+        taskService.deleteTask(deleteDto);
     }
+
 
 }

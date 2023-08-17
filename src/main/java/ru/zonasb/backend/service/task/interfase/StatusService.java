@@ -1,5 +1,6 @@
 package ru.zonasb.backend.service.task.interfase;
 
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.StatusDto;
 import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.model.tasks.Status;
@@ -16,7 +17,5 @@ public interface StatusService {
 
     Status updateStatus(Long id, StatusDto statusDto);
 
-    void deleteStatusById(Long id);
-
-    void bulkDeleteStatus(List<Long> ids);
+    void deleteStatus(DeleteDto deleteDto);
 }

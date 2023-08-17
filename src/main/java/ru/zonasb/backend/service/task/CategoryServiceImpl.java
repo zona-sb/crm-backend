@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.server.ResponseStatusException;
+import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.CategoryDto;
 import ru.zonasb.backend.model.tasks.Category;
 import ru.zonasb.backend.model.tasks.Status;
@@ -61,7 +62,7 @@ public class CategoryServiceImpl implements CategoryService {
         return categoryRepository.save(categoryToUpdate);
     }
 
-    @Override
+
     public void deleteCategoryById(final Long id) {
 
         if (id == null || id <= 0) {
@@ -86,9 +87,11 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public void bulkDeleteCategory(List<Long> ids) {
-        ids.forEach(this::deleteCategoryById);
+    public void deleteCategory(DeleteDto deleteDto) {
+        if (deleteDto.isDeleteAll()) {
+            categoryRepository.deleteAll();
+        } else {
+            deleteDto.getIds().forEach(this::deleteCategoryById);
+        }
     }
-
-
 }
