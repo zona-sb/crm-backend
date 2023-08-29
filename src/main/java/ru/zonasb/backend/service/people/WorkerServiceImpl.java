@@ -94,9 +94,9 @@ public class WorkerServiceImpl implements WorkerService {
     public void deleteWorkers(final DeleteDto deleteDto) {
         if (deleteDto.isDeleteAll()) {
             workerRepository.deleteAll();
+        } else {
+            workerRepository.deleteAllById(deleteDto.getIds());
         }
-        List<Long> ids = deleteDto.getIds();
-        workerRepository.deleteAllById(ids);
     }
 
 }
