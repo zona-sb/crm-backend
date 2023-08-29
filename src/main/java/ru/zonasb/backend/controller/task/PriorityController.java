@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.dto.DeleteDto;
+import ru.zonasb.backend.dto.filtrationDto.PriorityFiltrationDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
@@ -45,8 +46,8 @@ public class PriorityController {
     @Operation(summary = "Get all priorities")
     @ApiResponse(responseCode = "200", description = "Priorities found")
     @GetMapping
-    public Iterable<Priority> getAllPriorities(@QuerydslPredicate(root = Priority.class) Predicate predicate) {
-        return priorityService.getAllPriorities(predicate);
+    public Iterable<Priority> getAllPriorities(@RequestBody @Valid PriorityFiltrationDto priorityFiltrationDto) {
+        return priorityService.getAllPriorities(priorityFiltrationDto);
     }
 
     @Operation(summary = "Create new priority")

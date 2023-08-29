@@ -3,8 +3,8 @@ package ru.zonasb.backend.service.task;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
 import ru.zonasb.backend.dto.DeleteDto;
+import ru.zonasb.backend.dto.filtrationDto.PriorityFiltrationDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.model.tasks.Task;
@@ -12,10 +12,8 @@ import ru.zonasb.backend.repository.PriorityRepository;
 import ru.zonasb.backend.repository.TaskRepository;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
-import java.util.List;
-import java.util.NoSuchElementException;
-import java.util.Optional;
-import com.querydsl.core.types.Predicate;
+import java.util.*;
+import java.util.function.Predicate;
 
 @Transactional
 @Service
@@ -50,8 +48,8 @@ public class PriorityServiceImpl implements PriorityService {
     }
 
     @Override
-    public Iterable<Priority> getAllPriorities(Predicate predicate) {
-        return priorityRepository.findAll(predicate);
+    public Iterable<Priority> getAllPriorities(PriorityFiltrationDto priorityFiltrationDto) {
+        return filtrationPriorities(priorityRepository.findAll(), priorityFiltrationDto);
     }
 
     @Override
@@ -104,5 +102,27 @@ public class PriorityServiceImpl implements PriorityService {
 
         priorityRepository.deleteById(id);
     }
+
+    private List<Priority> filtrationPriorities(List<Priority> priorities,
+                                                PriorityFiltrationDto priorityFiltrationDto) {
+        List<Predicate<Priority>> predicates = new ArrayList<>();
+        if (priorityFiltrationDto.getTitle() != null && !priorityFiltrationDto.getTitle().isEmpty()) {
+            Predicate<Priority> predicateTitle = x -> x.getTitle().contains(priorityFiltrationDto.getTitle());
+            predicates.add(predicateTitle);
+        }
+        if (priorityFiltrationDto.getWeight() != null) {
+            Predicate<Priority> predicateWeight = x -> Objects.equals(priorityFiltrationDto.getWeight(), x.getWeight());
+            predicates.add(predicateWeight);
+        }
+        if (priorityFiltrationDto.getColor() != null && !priorityFiltrationDto.getColor().isEmpty()) {
+            Predicate<Priority> predicateColor = x -> Objects.equals(x.getColor(), priorityFiltrationDto.getColor());
+            predicates.add(predicateColor);
+        }
+        return priorities.stream().filter(x -> predicates.stream().allMatch(predicate -> predicate.test(x))).toList();
+    }
+
+
+
+
 
 }
