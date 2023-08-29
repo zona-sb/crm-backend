@@ -4,13 +4,13 @@ import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
 
-import java.util.List;
+import com.querydsl.core.types.Predicate;
 
 public interface PriorityService {
 
     Priority createNewPriority(PriorityDto priorityDto);
 
-    List<Priority> getAllPriorities();
+    Iterable<Priority> getAllPriorities(Predicate predicate);
 
     Priority getPriorityById(Long id);
 

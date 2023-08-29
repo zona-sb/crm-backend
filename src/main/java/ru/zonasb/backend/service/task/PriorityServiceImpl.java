@@ -3,6 +3,7 @@ package ru.zonasb.backend.service.task;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
@@ -14,6 +15,7 @@ import ru.zonasb.backend.service.task.interfase.PriorityService;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.Optional;
+import com.querydsl.core.types.Predicate;
 
 @Transactional
 @Service
@@ -48,8 +50,8 @@ public class PriorityServiceImpl implements PriorityService {
     }
 
     @Override
-    public List<Priority> getAllPriorities() {
-        return priorityRepository.findAll();
+    public Iterable<Priority> getAllPriorities(Predicate predicate) {
+        return priorityRepository.findAll(predicate);
     }
 
     @Override

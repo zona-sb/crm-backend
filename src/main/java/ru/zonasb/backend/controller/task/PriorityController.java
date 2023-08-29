@@ -5,6 +5,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +21,7 @@ import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
-import java.util.List;
+import com.querydsl.core.types.Predicate;
 
 @AllArgsConstructor
 @RestController
@@ -44,8 +45,8 @@ public class PriorityController {
     @Operation(summary = "Get all priorities")
     @ApiResponse(responseCode = "200", description = "Priorities found")
     @GetMapping
-    public List<Priority> getAllPriorities() {
-        return priorityService.getAllPriorities();
+    public Iterable<Priority> getAllPriorities(@QuerydslPredicate(root = Priority.class) Predicate predicate) {
+        return priorityService.getAllPriorities(predicate);
     }
 
     @Operation(summary = "Create new priority")
