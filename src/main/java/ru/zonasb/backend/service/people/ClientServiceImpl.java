@@ -98,8 +98,9 @@ public class ClientServiceImpl implements ClientService {
     public void deleteClient(DeleteDto deleteDto) {
         if (deleteDto.isDeleteAll()) {
             clientRepository.deleteAll();
+        } else {
+            clientRepository.deleteAllById(deleteDto.getIds());
         }
-        clientRepository.deleteAllById(deleteDto.getIds());
     }
 
 
