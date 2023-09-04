@@ -17,9 +17,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.dto.DeleteDto;
-import ru.zonasb.backend.dto.filtrationDto.PriorityFiltrationDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
+import ru.zonasb.backend.repository.PriorityRepository;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
 import com.querydsl.core.types.Predicate;
@@ -32,6 +32,7 @@ public class PriorityController {
     public static final String PRIORITY_CONTROLLER_PATH = "/priorities";
     public static final String ID = "/{id}";
     private final PriorityService priorityService;
+    private final PriorityRepository priorityRepository;
 
     @Operation(summary = "Get priority by ID. Return 404 if priority not found")
     @ApiResponses(value = {
@@ -46,8 +47,18 @@ public class PriorityController {
     @Operation(summary = "Get all priorities")
     @ApiResponse(responseCode = "200", description = "Priorities found")
     @GetMapping
-    public Iterable<Priority> getAllPriorities(@RequestBody @Valid PriorityFiltrationDto priorityFiltrationDto) {
-        return priorityService.getAllPriorities(priorityFiltrationDto);
+    public Iterable<Priority> getAllPriorities(@QuerydslPredicate(root = Priority.class) Predicate predicate) {
+        return priorityRepository.findAll(predicate);
+    }
+
+    @Operation(summary = "Get priority by ID. Return 404 if priority not found")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Priority found"),
+            @ApiResponse(responseCode = "404", description = "Priority with the given id does not exist")
+    })
+    @GetMapping(ID)
+    public Priority getPriorityById2(@PathVariable long id) {
+        return priorityService.getPriorityById(id);
     }
 
     @Operation(summary = "Create new priority")
