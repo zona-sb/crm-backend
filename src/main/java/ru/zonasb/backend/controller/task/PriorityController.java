@@ -51,16 +51,6 @@ public class PriorityController {
         return priorityRepository.findAll(predicate);
     }
 
-    @Operation(summary = "Get priority by ID. Return 404 if priority not found")
-    @ApiResponses(value = {
-            @ApiResponse(responseCode = "200", description = "Priority found"),
-            @ApiResponse(responseCode = "404", description = "Priority with the given id does not exist")
-    })
-    @GetMapping(ID)
-    public Priority getPriorityById2(@PathVariable long id) {
-        return priorityService.getPriorityById(id);
-    }
-
     @Operation(summary = "Create new priority")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Priority created")
