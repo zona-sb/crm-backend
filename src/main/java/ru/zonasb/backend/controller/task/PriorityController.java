@@ -19,7 +19,6 @@ import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.PriorityDto;
 import ru.zonasb.backend.model.tasks.Priority;
-import ru.zonasb.backend.repository.PriorityRepository;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 
 import com.querydsl.core.types.Predicate;
@@ -32,7 +31,6 @@ public class PriorityController {
     public static final String PRIORITY_CONTROLLER_PATH = "/priorities";
     public static final String ID = "/{id}";
     private final PriorityService priorityService;
-    private final PriorityRepository priorityRepository;
 
     @Operation(summary = "Get priority by ID. Return 404 if priority not found")
     @ApiResponses(value = {
@@ -48,7 +46,7 @@ public class PriorityController {
     @ApiResponse(responseCode = "200", description = "Priorities found")
     @GetMapping
     public Iterable<Priority> getAllPriorities(@QuerydslPredicate(root = Priority.class) Predicate predicate) {
-        return priorityRepository.findAll(predicate);
+        return priorityService.getAllPriorities(predicate);
     }
 
     @Operation(summary = "Create new priority")
