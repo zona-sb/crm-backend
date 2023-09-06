@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1689254260096-1
+    id: 1694021258222-1
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -18,7 +18,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: category
 - changeSet:
-    id: 1689254260096-2
+    id: 1694021258222-2
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -42,7 +42,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: client
 - changeSet:
-    id: 1689254260096-3
+    id: 1694021258222-3
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -63,7 +63,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: manager
 - changeSet:
-    id: 1689254260096-4
+    id: 1694021258222-4
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -87,7 +87,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: person
 - changeSet:
-    id: 1689254260096-5
+    id: 1694021258222-5
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -106,9 +106,12 @@ databaseChangeLog:
         - column:
             name: title
             type: VARCHAR(255)
+        - column:
+            name: priority_weight
+            type: INT
         tableName: priority
 - changeSet:
-    id: 1689254260096-6
+    id: 1694021258222-6
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -125,8 +128,23 @@ databaseChangeLog:
             name: title
             type: VARCHAR(255)
         - column:
-            name: operation_number
-            type: INT
+            name: category_id
+            type: BIGINT
+        tableName: status
+- changeSet:
+    id: 1694021258222-7
+    author: andreevdan83 (generated)
+    changes:
+    - createTable:
+        columns:
+        - column:
+            autoIncrement: true
+            constraints:
+              nullable: false
+              primaryKey: true
+              primaryKeyName: taskPK
+            name: id
+            type: BIGINT
         - column:
             name: address
             type: VARCHAR(255)
@@ -134,12 +152,15 @@ databaseChangeLog:
             name: comment
             type: VARCHAR(255)
         - column:
-            name: communicateion_date
-            type: TIMESTAMP(6)
-        - column:
             defaultValueBoolean: false
-            name: is_completed
+            name: completed
             type: BOOLEAN
+        - column:
+            name: communication_date
+            type: date
+        - column:
+            name: operation_number
+            type: INT
         - column:
             name: category_id
             type: BIGINT
@@ -155,9 +176,9 @@ databaseChangeLog:
         - column:
             name: status_id
             type: BIGINT
-        tableName: status
+        tableName: task
 - changeSet:
-    id: 1689254260096-7
+    id: 1694021258222-8
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -181,7 +202,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: user_data
 - changeSet:
-    id: 1689254260096-8
+    id: 1694021258222-9
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -199,7 +220,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: user_role
 - changeSet:
-    id: 1689254260096-9
+    id: 1694021258222-10
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -217,33 +238,20 @@ databaseChangeLog:
             type: BIGINT
         tableName: worker
 - changeSet:
-    id: 1689254260096-10
+    id: 1694021258222-11
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
-        baseColumnNames: client_id
-        baseTableName: status
-        constraintName: FK1cauhuv0lfa723kbterktgspk
+        baseColumnNames: priority_id
+        baseTableName: task
+        constraintName: FK23pwolpebddlvnpucweas18g0
         deferrable: false
         initiallyDeferred: false
         referencedColumnNames: id
-        referencedTableName: client
+        referencedTableName: priority
         validate: true
 - changeSet:
-    id: 1689254260096-11
-    author: andreevdan83 (generated)
-    changes:
-    - addForeignKeyConstraint:
-        baseColumnNames: manager_id
-        baseTableName: status
-        constraintName: FK1fqexkhis4ini4k5x9otduq7q
-        deferrable: false
-        initiallyDeferred: false
-        referencedColumnNames: id
-        referencedTableName: manager
-        validate: true
-- changeSet:
-    id: 1689254260096-12
+    id: 1694021258222-12
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -256,20 +264,20 @@ databaseChangeLog:
         referencedTableName: user_data
         validate: true
 - changeSet:
-    id: 1689254260096-13
+    id: 1694021258222-13
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
-        baseColumnNames: priority_id
-        baseTableName: status
-        constraintName: FK8ff7gpcschwtrsiipl5k66byv
+        baseColumnNames: status_id
+        baseTableName: task
+        constraintName: FK9amdidv53i0hvjvnxkrup18t4
         deferrable: false
         initiallyDeferred: false
         referencedColumnNames: id
-        referencedTableName: priority
+        referencedTableName: status
         validate: true
 - changeSet:
-    id: 1689254260096-14
+    id: 1694021258222-14
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -282,20 +290,33 @@ databaseChangeLog:
         referencedTableName: user_role
         validate: true
 - changeSet:
-    id: 1689254260096-15
+    id: 1694021258222-15
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
-        baseColumnNames: status_id
-        baseTableName: status
-        constraintName: FKjdymer53u0cm5r4a6eegscymp
+        baseColumnNames: manager_id
+        baseTableName: task
+        constraintName: FKfy13petlv2mc40btju6afhyo6
         deferrable: false
         initiallyDeferred: false
         referencedColumnNames: id
-        referencedTableName: status
+        referencedTableName: manager
         validate: true
 - changeSet:
-    id: 1689254260096-16
+    id: 1694021258222-16
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: category_id
+        baseTableName: task
+        constraintName: FKkjb4pwpo8oqc8fvkgbmiitsu9
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: category
+        validate: true
+- changeSet:
+    id: 1694021258222-17
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -308,7 +329,20 @@ databaseChangeLog:
         referencedTableName: person
         validate: true
 - changeSet:
-    id: 1689254260096-17
+    id: 1694021258222-18
+    author: andreevdan83 (generated)
+    changes:
+    - addForeignKeyConstraint:
+        baseColumnNames: client_id
+        baseTableName: task
+        constraintName: FKphvo4rwjcbuf358bw8p7omyn5
+        deferrable: false
+        initiallyDeferred: false
+        referencedColumnNames: id
+        referencedTableName: client
+        validate: true
+- changeSet:
+    id: 1694021258222-19
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -321,7 +355,7 @@ databaseChangeLog:
         referencedTableName: category
         validate: true
 - changeSet:
-    id: 1689254260096-18
+    id: 1694021258222-20
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -334,7 +368,7 @@ databaseChangeLog:
         referencedTableName: person
         validate: true
 - changeSet:
-    id: 1689254260096-19
+    id: 1694021258222-21
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:

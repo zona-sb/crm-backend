@@ -13,7 +13,9 @@ import com.querydsl.core.types.dsl.StringExpression;
 import java.util.Optional;
 
 @Repository
-public interface PriorityRepository extends JpaRepository<Priority, Long>, QuerydslPredicateExecutor<Priority>, QuerydslBinderCustomizer<QPriority> {
+public interface PriorityRepository extends JpaRepository<Priority, Long>,
+        QuerydslPredicateExecutor<Priority>,
+        QuerydslBinderCustomizer<QPriority> {
     Optional<Priority> findPriorityByTitle(String title);
     Optional<Priority> findPriorityByWeight(int priorityWeight);
     Optional<Priority> findPriorityByColor(String color);
