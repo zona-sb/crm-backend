@@ -14,12 +14,9 @@ import java.util.Optional;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     Optional<List<Task>> findTaskByCategory(Category category);
-
     Optional<List<Task>> findTaskByPriority(Priority priority);
-
     Optional<List<Task>> findTaskByCategoryAndStatus(Category category, Status status);
-
-    List<Task> findAllByOrderByDateDesc();
-
+    List<Task> findTasksByCompletedFalseAndCategoryIdOrderByDateDesc(Long categoryId);
+    List<Task> findTasksByCompletedTrueAndCategoryIdOrderByDateDesc(Long categoryId);
     Optional<Task> findTaskByOperationNumber(Integer operationNumber);
 }
