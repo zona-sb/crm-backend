@@ -8,12 +8,9 @@ import java.util.List;
 
 public interface TaskService {
     Task createNewTask(TaskDto taskDto);
-
-    List<Task> getAllTasks();
-
+    List<Task> getActiveTasks(Long categoryId);
+    List<Task> getArchiveTasks(Long categoryId);
     Task getTaskById(Long id);
-
     Task updateTask(Long id, TaskDto taskDto);
-
     void deleteTask(DeleteDto deleteDto);
 }

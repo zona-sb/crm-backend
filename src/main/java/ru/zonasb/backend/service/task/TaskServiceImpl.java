@@ -60,8 +60,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllTasks() {
-        return taskRepository.findAllByOrderByDateDesc();
+    public List<Task> getActiveTasks(final Long categoryId) {
+        return taskRepository.findTasksByCompletedFalseAndCategoryIdOrderByDateDesc(categoryId);
+    }
+
+    @Override
+    public List<Task> getArchiveTasks(final Long categoryId) {
+        return taskRepository.findTasksByCompletedTrueAndCategoryIdOrderByDateDesc(categoryId);
     }
 
     @Override

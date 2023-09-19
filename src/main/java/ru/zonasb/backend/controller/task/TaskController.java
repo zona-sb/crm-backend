@@ -6,15 +6,7 @@ import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseStatus;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.TaskDto;
 import ru.zonasb.backend.model.tasks.Task;
@@ -28,6 +20,8 @@ import java.util.List;
 public class TaskController {
 
     public static final String TASK_CONTROLLER_PATH = "/tasks";
+    public static final String ACTIVE_TASK_CONTROLLER_PATH="/active";
+    public static final String ARCHIVE_TASK_CONTROLLER_PATH="/archive";
     public static final String ID = "/{id}";
     private final TaskService taskService;
 
@@ -42,11 +36,18 @@ public class TaskController {
         return taskService.getTaskById(id);
     }
 
-    @Operation(summary = "Get all tasks")
+    @Operation(summary = "Get all active tasks")
     @ApiResponse(responseCode = "200", description = "Tasks found")
-    @GetMapping
-    public List<Task> getAllTasks() {
-        return taskService.getAllTasks();
+    @GetMapping(ACTIVE_TASK_CONTROLLER_PATH+ID)
+    public List<Task> getActiveTasks(@PathVariable long id) {
+        return taskService.getActiveTasks(id);
+    }
+
+    @Operation(summary = "Get all archive tasks")
+    @ApiResponse(responseCode = "200", description = "Tasks found")
+    @GetMapping(ARCHIVE_TASK_CONTROLLER_PATH+ID)
+    public List<Task> getArchiveTasks(@PathVariable long id) {
+        return taskService.getArchiveTasks(id);
     }
 
     @Operation(summary = "Create new task")
