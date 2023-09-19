@@ -1,10 +1,12 @@
 package ru.zonasb.backend.controller.task;
 
+import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,10 +19,11 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.StatusDto;
+import ru.zonasb.backend.model.tasks.Category;
 import ru.zonasb.backend.model.tasks.Status;
 import ru.zonasb.backend.service.task.interfase.StatusService;
 
-import java.util.List;
+
 
 @AllArgsConstructor
 @RestController
@@ -45,10 +48,10 @@ public class StatusController {
     @Operation(summary = "Get all statuses")
     @ApiResponse(responseCode = "200", description = "Statuses were successfully found")
     @GetMapping
-    public List<Status> getAllStatuses() {
-        return statusService.getAllStatuses();
+    public Iterable<Status> getAllStatuses(@QuerydslPredicate(root = Status.class) Predicate predicate,
+                                           @QuerydslPredicate(root = Category.class) Predicate categoryPredicate) {
+        return statusService.getAll(predicate, categoryPredicate);
     }
-
 
     @Operation(summary = "Create new status")
     @ApiResponses(value = {

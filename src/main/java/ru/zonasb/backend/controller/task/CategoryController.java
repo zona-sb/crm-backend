@@ -1,10 +1,12 @@
 package ru.zonasb.backend.controller.task;
 
+import com.querydsl.core.types.Predicate;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.querydsl.binding.QuerydslPredicate;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,7 +22,6 @@ import ru.zonasb.backend.dto.task.CategoryDto;
 import ru.zonasb.backend.model.tasks.Category;
 import ru.zonasb.backend.service.task.interfase.CategoryService;
 
-import java.util.List;
 
 @AllArgsConstructor
 @RestController
@@ -45,10 +46,9 @@ public class CategoryController {
     @Operation(summary = "Get all categories")
     @ApiResponse(responseCode = "200", description = "Categories were successfully found")
     @GetMapping
-    public List<Category> getAllCategories() {
-        return categoryService.getAllCategories();
+    public Iterable<Category> getAllCategories(@QuerydslPredicate(root = Category.class) Predicate predicate) {
+        return categoryService.getAllCategories(predicate);
     }
-
 
     @Operation(summary = "Create new category")
     @ApiResponses(value = {

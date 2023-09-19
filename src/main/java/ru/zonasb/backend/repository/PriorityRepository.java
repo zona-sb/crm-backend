@@ -1,5 +1,6 @@
 package ru.zonasb.backend.repository;
 
+import com.querydsl.core.types.Predicate;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
@@ -10,7 +11,7 @@ import ru.zonasb.backend.model.tasks.QPriority;
 import com.querydsl.core.types.dsl.SimpleExpression;
 import com.querydsl.core.types.dsl.StringExpression;
 
-import java.util.Optional;
+import java.util.*;
 
 @Repository
 public interface PriorityRepository extends JpaRepository<Priority, Long>,
@@ -27,7 +28,5 @@ public interface PriorityRepository extends JpaRepository<Priority, Long>,
                 .first(StringExpression::containsIgnoreCase);
 
         bindings.bind(priority.weight).first(SimpleExpression::eq);
-
     }
-
 }

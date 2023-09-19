@@ -1,5 +1,6 @@
 package ru.zonasb.backend.service.task;
 
+import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -8,6 +9,7 @@ import org.springframework.web.server.ResponseStatusException;
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.CategoryDto;
 import ru.zonasb.backend.model.tasks.Category;
+import ru.zonasb.backend.model.tasks.Priority;
 import ru.zonasb.backend.model.tasks.Status;
 import ru.zonasb.backend.model.tasks.Task;
 import ru.zonasb.backend.repository.CategoryRepository;
@@ -41,8 +43,8 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public List<Category> getAllCategories() {
-        return categoryRepository.findAll();
+    public Iterable<Category> getAllCategories(Predicate predicate) {
+        return categoryRepository.findAll(predicate);
     }
 
     @Override

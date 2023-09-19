@@ -381,3 +381,181 @@ databaseChangeLog:
         referencedTableName: person
         validate: true
 
+databaseChangeLog:
+- changeSet:
+    id: 1694276219014-4
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UKQJDFH2MBLOGYMLSOA4FX6AB1V
+        tableName: STATUS
+- changeSet:
+    id: 1694276219014-5
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_24T7N7HHUVWAQW92B2T514M33
+        tableName: PERSON
+- changeSet:
+    id: 1694276219014-6
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_9B0KC25BTDWDO3N0CTO9C23QF
+        tableName: PRIORITY
+- changeSet:
+    id: 1694276219014-7
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_A2L8ID4MT4PL4V2RIY4MMKPLV
+        tableName: PRIORITY
+- changeSet:
+    id: 1694276219014-8
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_DHXUYDJJ5L1VDS6S9EEX23DCR
+        tableName: USER_DATA
+- changeSet:
+    id: 1694276219014-9
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_EBUTX9K2BRJVVRG4GDVXJGF00
+        tableName: TASK
+- changeSet:
+    id: 1694276219014-10
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_FWMWI44U55BO4RVWSV0CLN012
+        tableName: PERSON
+- changeSet:
+    id: 1694276219014-11
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_LNMF77QVJNR2LMYXRRYDOM9HD
+        tableName: CATEGORY
+- changeSet:
+    id: 1694276219014-12
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_SPLLK5PCUUWAGIXL5MBI8C0ER
+        tableName: PRIORITY
+- changeSet:
+    id: 1694276219014-1
+    author: xushaha (generated)
+    changes:
+    - dropNotNullConstraint:
+        columnDataType: date
+        columnName: communication_date
+        tableName: task
+- changeSet:
+    id: 1694276219014-2
+    author: xushaha (generated)
+    changes:
+    - modifyDataType:
+        columnName: password
+        newDataType: varchar(255)
+        tableName: user_data
+- changeSet:
+    id: 1694276219014-3
+    author: xushaha (generated)
+    changes:
+    - modifyDataType:
+        columnName: phone
+        newDataType: varchar(255)
+        tableName: person
+
+databaseChangeLog:
+- changeSet:
+    id: 1694276230386-4
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UKQJDFH2MBLOGYMLSOA4FX6AB1V
+        tableName: STATUS
+- changeSet:
+    id: 1694276230386-5
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_24T7N7HHUVWAQW92B2T514M33
+        tableName: PERSON
+- changeSet:
+    id: 1694276230386-6
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_9B0KC25BTDWDO3N0CTO9C23QF
+        tableName: PRIORITY
+- changeSet:
+    id: 1694276230386-7
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_A2L8ID4MT4PL4V2RIY4MMKPLV
+        tableName: PRIORITY
+- changeSet:
+    id: 1694276230386-8
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_DHXUYDJJ5L1VDS6S9EEX23DCR
+        tableName: USER_DATA
+- changeSet:
+    id: 1694276230386-9
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_EBUTX9K2BRJVVRG4GDVXJGF00
+        tableName: TASK
+- changeSet:
+    id: 1694276230386-10
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_FWMWI44U55BO4RVWSV0CLN012
+        tableName: PERSON
+- changeSet:
+    id: 1694276230386-11
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_LNMF77QVJNR2LMYXRRYDOM9HD
+        tableName: CATEGORY
+- changeSet:
+    id: 1694276230386-12
+    author: xushaha (generated)
+    changes:
+    - dropUniqueConstraint:
+        constraintName: UK_SPLLK5PCUUWAGIXL5MBI8C0ER
+        tableName: PRIORITY
+- changeSet:
+    id: 1694276230386-1
+    author: xushaha (generated)
+    changes:
+    - dropNotNullConstraint:
+        columnDataType: date
+        columnName: communication_date
+        tableName: task
+- changeSet:
+    id: 1694276230386-2
+    author: xushaha (generated)
+    changes:
+    - modifyDataType:
+        columnName: password
+        newDataType: varchar(255)
+        tableName: user_data
+- changeSet:
+    id: 1694276230386-3
+    author: xushaha (generated)
+    changes:
+    - modifyDataType:
+        columnName: phone
+        newDataType: varchar(255)
+        tableName: person
+

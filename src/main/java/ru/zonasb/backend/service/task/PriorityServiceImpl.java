@@ -50,7 +50,6 @@ public class PriorityServiceImpl implements PriorityService {
 
     @Override
     public Iterable<Priority> getAllPriorities(Predicate predicate) {
-//        return priorityRepository.findAll();
         return priorityRepository.findAll(predicate);
     }
 

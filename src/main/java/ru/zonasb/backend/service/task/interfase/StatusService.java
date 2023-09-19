@@ -1,21 +1,19 @@
 package ru.zonasb.backend.service.task.interfase;
 
-import ru.zonasb.backend.dto.DeleteDto;
-import ru.zonasb.backend.dto.task.StatusDto;
-import ru.zonasb.backend.model.tasks.Priority;
-import ru.zonasb.backend.model.tasks.Status;
-
-import java.util.List;
-import java.util.Map;
+import com.querydsl.core.types.*;
+import ru.zonasb.backend.dto.*;
+import ru.zonasb.backend.dto.task.*;
+import ru.zonasb.backend.model.tasks.*;
 
 public interface StatusService {
     Status createNewStatus(StatusDto statusDto);
 
-    List<Status> getAllStatuses();
+    public Iterable<Status> getAll(Predicate p1, Predicate p2);
 
     Status getStatusById(Long id);
 
     Status updateStatus(Long id, StatusDto statusDto);
 
     void deleteStatus(DeleteDto deleteDto);
+
 }
