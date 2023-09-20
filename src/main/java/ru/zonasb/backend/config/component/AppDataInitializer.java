@@ -55,7 +55,7 @@ public class AppDataInitializer {
             RegistrationDto registrationDto = RegistrationDto.builder()
                     .name("user")
                     .phone("+79999999999")
-                    .email("user@maul.ru")
+                    .email("user@mail.ru")
                     .password("pass")
                     .build();
             registrationService.registrationNewManager(registrationDto);
