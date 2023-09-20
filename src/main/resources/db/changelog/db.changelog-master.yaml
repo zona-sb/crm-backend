@@ -1,6 +1,6 @@
 databaseChangeLog:
 - changeSet:
-    id: 1694021258222-1
+    id: 1695230264167-1
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -18,7 +18,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: category
 - changeSet:
-    id: 1694021258222-2
+    id: 1695230264167-2
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -42,7 +42,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: client
 - changeSet:
-    id: 1694021258222-3
+    id: 1695230264167-3
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -63,7 +63,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: manager
 - changeSet:
-    id: 1694021258222-4
+    id: 1695230264167-4
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -87,7 +87,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: person
 - changeSet:
-    id: 1694021258222-5
+    id: 1695230264167-5
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -111,7 +111,7 @@ databaseChangeLog:
             type: INT
         tableName: priority
 - changeSet:
-    id: 1694021258222-6
+    id: 1695230264167-6
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -132,7 +132,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: status
 - changeSet:
-    id: 1694021258222-7
+    id: 1695230264167-7
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -178,7 +178,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: task
 - changeSet:
-    id: 1694021258222-8
+    id: 1695230264167-8
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -202,7 +202,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: user_data
 - changeSet:
-    id: 1694021258222-9
+    id: 1695230264167-9
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -220,7 +220,7 @@ databaseChangeLog:
             type: VARCHAR(255)
         tableName: user_role
 - changeSet:
-    id: 1694021258222-10
+    id: 1695230264167-10
     author: andreevdan83 (generated)
     changes:
     - createTable:
@@ -238,7 +238,7 @@ databaseChangeLog:
             type: BIGINT
         tableName: worker
 - changeSet:
-    id: 1694021258222-11
+    id: 1695230264167-11
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -251,7 +251,7 @@ databaseChangeLog:
         referencedTableName: priority
         validate: true
 - changeSet:
-    id: 1694021258222-12
+    id: 1695230264167-12
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -264,7 +264,7 @@ databaseChangeLog:
         referencedTableName: user_data
         validate: true
 - changeSet:
-    id: 1694021258222-13
+    id: 1695230264167-13
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -277,7 +277,7 @@ databaseChangeLog:
         referencedTableName: status
         validate: true
 - changeSet:
-    id: 1694021258222-14
+    id: 1695230264167-14
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -290,7 +290,7 @@ databaseChangeLog:
         referencedTableName: user_role
         validate: true
 - changeSet:
-    id: 1694021258222-15
+    id: 1695230264167-15
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -303,7 +303,7 @@ databaseChangeLog:
         referencedTableName: manager
         validate: true
 - changeSet:
-    id: 1694021258222-16
+    id: 1695230264167-16
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -316,7 +316,7 @@ databaseChangeLog:
         referencedTableName: category
         validate: true
 - changeSet:
-    id: 1694021258222-17
+    id: 1695230264167-17
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -329,7 +329,7 @@ databaseChangeLog:
         referencedTableName: person
         validate: true
 - changeSet:
-    id: 1694021258222-18
+    id: 1695230264167-18
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -342,7 +342,7 @@ databaseChangeLog:
         referencedTableName: client
         validate: true
 - changeSet:
-    id: 1694021258222-19
+    id: 1695230264167-19
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -355,7 +355,7 @@ databaseChangeLog:
         referencedTableName: category
         validate: true
 - changeSet:
-    id: 1694021258222-20
+    id: 1695230264167-20
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -368,7 +368,7 @@ databaseChangeLog:
         referencedTableName: person
         validate: true
 - changeSet:
-    id: 1694021258222-21
+    id: 1695230264167-21
     author: andreevdan83 (generated)
     changes:
     - addForeignKeyConstraint:
@@ -380,182 +380,4 @@ databaseChangeLog:
         referencedColumnNames: id
         referencedTableName: person
         validate: true
-
-databaseChangeLog:
-- changeSet:
-    id: 1694276219014-4
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UKQJDFH2MBLOGYMLSOA4FX6AB1V
-        tableName: STATUS
-- changeSet:
-    id: 1694276219014-5
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_24T7N7HHUVWAQW92B2T514M33
-        tableName: PERSON
-- changeSet:
-    id: 1694276219014-6
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_9B0KC25BTDWDO3N0CTO9C23QF
-        tableName: PRIORITY
-- changeSet:
-    id: 1694276219014-7
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_A2L8ID4MT4PL4V2RIY4MMKPLV
-        tableName: PRIORITY
-- changeSet:
-    id: 1694276219014-8
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_DHXUYDJJ5L1VDS6S9EEX23DCR
-        tableName: USER_DATA
-- changeSet:
-    id: 1694276219014-9
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_EBUTX9K2BRJVVRG4GDVXJGF00
-        tableName: TASK
-- changeSet:
-    id: 1694276219014-10
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_FWMWI44U55BO4RVWSV0CLN012
-        tableName: PERSON
-- changeSet:
-    id: 1694276219014-11
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_LNMF77QVJNR2LMYXRRYDOM9HD
-        tableName: CATEGORY
-- changeSet:
-    id: 1694276219014-12
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_SPLLK5PCUUWAGIXL5MBI8C0ER
-        tableName: PRIORITY
-- changeSet:
-    id: 1694276219014-1
-    author: xushaha (generated)
-    changes:
-    - dropNotNullConstraint:
-        columnDataType: date
-        columnName: communication_date
-        tableName: task
-- changeSet:
-    id: 1694276219014-2
-    author: xushaha (generated)
-    changes:
-    - modifyDataType:
-        columnName: password
-        newDataType: varchar(255)
-        tableName: user_data
-- changeSet:
-    id: 1694276219014-3
-    author: xushaha (generated)
-    changes:
-    - modifyDataType:
-        columnName: phone
-        newDataType: varchar(255)
-        tableName: person
-
-databaseChangeLog:
-- changeSet:
-    id: 1694276230386-4
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UKQJDFH2MBLOGYMLSOA4FX6AB1V
-        tableName: STATUS
-- changeSet:
-    id: 1694276230386-5
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_24T7N7HHUVWAQW92B2T514M33
-        tableName: PERSON
-- changeSet:
-    id: 1694276230386-6
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_9B0KC25BTDWDO3N0CTO9C23QF
-        tableName: PRIORITY
-- changeSet:
-    id: 1694276230386-7
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_A2L8ID4MT4PL4V2RIY4MMKPLV
-        tableName: PRIORITY
-- changeSet:
-    id: 1694276230386-8
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_DHXUYDJJ5L1VDS6S9EEX23DCR
-        tableName: USER_DATA
-- changeSet:
-    id: 1694276230386-9
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_EBUTX9K2BRJVVRG4GDVXJGF00
-        tableName: TASK
-- changeSet:
-    id: 1694276230386-10
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_FWMWI44U55BO4RVWSV0CLN012
-        tableName: PERSON
-- changeSet:
-    id: 1694276230386-11
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_LNMF77QVJNR2LMYXRRYDOM9HD
-        tableName: CATEGORY
-- changeSet:
-    id: 1694276230386-12
-    author: xushaha (generated)
-    changes:
-    - dropUniqueConstraint:
-        constraintName: UK_SPLLK5PCUUWAGIXL5MBI8C0ER
-        tableName: PRIORITY
-- changeSet:
-    id: 1694276230386-1
-    author: xushaha (generated)
-    changes:
-    - dropNotNullConstraint:
-        columnDataType: date
-        columnName: communication_date
-        tableName: task
-- changeSet:
-    id: 1694276230386-2
-    author: xushaha (generated)
-    changes:
-    - modifyDataType:
-        columnName: password
-        newDataType: varchar(255)
-        tableName: user_data
-- changeSet:
-    id: 1694276230386-3
-    author: xushaha (generated)
-    changes:
-    - modifyDataType:
-        columnName: phone
-        newDataType: varchar(255)
-        tableName: person
 

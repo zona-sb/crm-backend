@@ -4,12 +4,14 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.time.LocalDate;
 
 @Data
+@Builder
 @NoArgsConstructor
 @AllArgsConstructor
 public class TaskDto {
@@ -33,9 +35,6 @@ public class TaskDto {
     private Long categoryId;
 
     private Long priorityId;
-
-    @NotNull
-    private Long managerId;
 
     @NotNull
     private Long clientId;
