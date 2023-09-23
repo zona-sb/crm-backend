@@ -2,6 +2,7 @@ package ru.zonasb.backend.service.task;
 
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -43,9 +44,10 @@ public class CategoryServiceImpl implements CategoryService {
     }
 
     @Override
-    public Iterable<Category> getAllCategories(Predicate predicate) {
-        return categoryRepository.findAll(predicate);
+    public Page<Category> getAllCategories(Predicate predicate, Pageable pageable) {
+        return categoryRepository.findAll(predicate, pageable);
     }
+
 
     @Override
     public Category getCategoryById(final Long id) {

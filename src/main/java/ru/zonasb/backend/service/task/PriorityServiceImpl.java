@@ -2,6 +2,8 @@ package ru.zonasb.backend.service.task;
 
 import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import ru.zonasb.backend.dto.DeleteDto;
@@ -49,8 +51,8 @@ public class PriorityServiceImpl implements PriorityService {
     }
 
     @Override
-    public Iterable<Priority> getAllPriorities(Predicate predicate) {
-        return priorityRepository.findAll(predicate);
+    public Page<Priority> getAllPriorities(Predicate predicate, Pageable pageable) {
+        return priorityRepository.findAll(predicate, pageable);
     }
 
     @Override

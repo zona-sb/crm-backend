@@ -1,14 +1,15 @@
 package ru.zonasb.backend.service.task.interfase;
 
 import com.querydsl.core.types.Predicate;
+import org.springframework.data.domain.*;
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.CategoryDto;
-import ru.zonasb.backend.model.tasks.Category;
+import ru.zonasb.backend.model.tasks.*;
 
 public interface CategoryService {
     Category createNewCategory(CategoryDto categoryDto);
 
-    Iterable<Category> getAllCategories(Predicate predicate);
+    Page<Category> getAllCategories(Predicate predicate, Pageable pageable);
 
     Category getCategoryById(Long id);
 

@@ -5,7 +5,11 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.data.web.SortDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -45,8 +49,10 @@ public class PriorityController {
     @Operation(summary = "Get all priorities")
     @ApiResponse(responseCode = "200", description = "Priorities found")
     @GetMapping
-    public Iterable<Priority> getAllPriorities(@QuerydslPredicate(root = Priority.class) Predicate predicate) {
-        return priorityService.getAllPriorities(predicate);
+    public Page<Priority> getAllPriorities(
+            @QuerydslPredicate(root = Priority.class) Predicate predicate,
+            @SortDefault(sort="weight", direction= Sort.Direction.ASC) Pageable pageable) {
+        return priorityService.getAllPriorities(predicate, pageable);
     }
 
     @Operation(summary = "Create new priority")

@@ -1,14 +1,14 @@
 package ru.zonasb.backend.repository;
 
+import com.querydsl.core.types.*;
 import com.querydsl.core.types.dsl.StringExpression;
+import org.springframework.data.domain.*;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.querydsl.QuerydslPredicateExecutor;
 import org.springframework.data.querydsl.binding.QuerydslBinderCustomizer;
 import org.springframework.data.querydsl.binding.QuerydslBindings;
 import org.springframework.stereotype.Repository;
-import ru.zonasb.backend.model.tasks.Category;
-import ru.zonasb.backend.model.tasks.QStatus;
-import ru.zonasb.backend.model.tasks.Status;
+import ru.zonasb.backend.model.tasks.*;
 
 import java.util.List;
 import java.util.Optional;
@@ -19,6 +19,8 @@ public interface StatusRepository extends JpaRepository<Status, Long>, QuerydslP
     Optional<Status> findStatusByCategoryAndStatusTitle(Category category, String statusTitle);
 
     Optional<List<Status>> findStatusByCategory(Category category);
+
+    Page<Status> findAll(Predicate predicate, Pageable pageable);
 
     @Override
     default void customize(QuerydslBindings bindings, QStatus status) {

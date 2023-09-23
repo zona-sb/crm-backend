@@ -6,7 +6,9 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.*;
 import org.springframework.data.querydsl.binding.QuerydslPredicate;
+import org.springframework.data.web.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -19,7 +21,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.CategoryDto;
-import ru.zonasb.backend.model.tasks.Category;
+import ru.zonasb.backend.model.tasks.*;
 import ru.zonasb.backend.service.task.interfase.CategoryService;
 
 
@@ -46,8 +48,10 @@ public class CategoryController {
     @Operation(summary = "Get all categories")
     @ApiResponse(responseCode = "200", description = "Categories were successfully found")
     @GetMapping
-    public Iterable<Category> getAllCategories(@QuerydslPredicate(root = Category.class) Predicate predicate) {
-        return categoryService.getAllCategories(predicate);
+    public Page<Category> getAllCategories(
+            @QuerydslPredicate(root = Category.class) Predicate predicate,
+            @SortDefault(sort="categoryTitle", direction= Sort.Direction.ASC) Pageable pageable) {
+        return categoryService.getAllCategories(predicate, pageable);
     }
 
     @Operation(summary = "Create new category")
@@ -59,7 +63,6 @@ public class CategoryController {
     public Category createNewCategory(@RequestBody @Valid CategoryDto categoryDto) {
         return categoryService.createNewCategory(categoryDto);
     }
-
 
     @Operation(summary = "Update category by id")
     @ApiResponses(value = {
