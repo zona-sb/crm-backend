@@ -1,12 +1,11 @@
 package ru.zonasb.backend.service.task;
 
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.*;
 import org.springframework.stereotype.Service;
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.StatusDto;
-import ru.zonasb.backend.model.tasks.Category;
-import ru.zonasb.backend.model.tasks.Status;
-import ru.zonasb.backend.model.tasks.Task;
+import ru.zonasb.backend.model.tasks.*;
 import ru.zonasb.backend.repository.StatusRepository;
 import ru.zonasb.backend.repository.TaskRepository;
 import com.querydsl.core.BooleanBuilder;
@@ -41,20 +40,14 @@ public class StatusServiceImpl implements StatusService {
         return statusRepository.save(status);
     }
 
-/*
-    @Override
-    public Iterable<Status> getAllStatuses(Predicate predicate) {
-        return statusRepository.findAll(predicate);
-    }
-*/
 
     @Override
-    public Iterable<Status> getAll(Predicate p1, Predicate p2) {
+    public Page<Status> getAll(Predicate p1, Predicate p2, Pageable pageable) {
         BooleanBuilder builder = new BooleanBuilder();
         builder.and(p1);
         builder.and(p2);
 
-        return statusRepository.findAll(builder);
+        return statusRepository.findAll(builder, pageable);
     }
 
     @Override
