@@ -19,6 +19,7 @@ import java.util.Optional;
 public interface PriorityRepository extends JpaRepository<Priority, Long>,
         QuerydslPredicateExecutor<Priority>,
         QuerydslBinderCustomizer<QPriority> {
+
     Optional<Priority> findPriorityByTitle(String title);
     Optional<Priority> findPriorityByWeight(int priorityWeight);
     Optional<Priority> findPriorityByColor(String color);
