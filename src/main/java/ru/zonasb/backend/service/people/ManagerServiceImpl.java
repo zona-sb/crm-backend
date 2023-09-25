@@ -28,6 +28,12 @@ public class ManagerServiceImpl implements ManagerService {
     }
 
     @Override
+    public Manager getManagerByUserId(long userId) {
+        return managerRepository.findManagerByUserId(userId)
+                .orElseThrow(() -> new NoSuchElementException("manager with that id is not found"));
+    }
+
+    @Override
     public List<Manager> getAllManagers() {
         return managerRepository.findAll();
     }

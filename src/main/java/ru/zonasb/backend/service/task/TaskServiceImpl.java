@@ -4,10 +4,12 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 import ru.zonasb.backend.dto.DeleteDto;
 import ru.zonasb.backend.dto.task.TaskDto;
+import ru.zonasb.backend.model.people.Manager;
 import ru.zonasb.backend.model.tasks.Task;
 import ru.zonasb.backend.repository.TaskRepository;
 import ru.zonasb.backend.service.people.interfase.ClientService;
 import ru.zonasb.backend.service.people.interfase.ManagerService;
+import ru.zonasb.backend.service.people.interfase.UserService;
 import ru.zonasb.backend.service.task.interfase.CategoryService;
 import ru.zonasb.backend.service.task.interfase.PriorityService;
 import ru.zonasb.backend.service.task.interfase.StatusService;
@@ -28,6 +30,8 @@ public class TaskServiceImpl implements TaskService {
     PriorityService priorityService;
     ManagerService managerService;
     ClientService clientService;
+    UserService userService;
+
 
     @Override
     public Task createNewTask(final TaskDto taskDto) {
@@ -42,6 +46,20 @@ public class TaskServiceImpl implements TaskService {
             throw new IllegalArgumentException("Task with this operation number is already exist");
         }
 
+        Manager manager;
+//        if (userService.getCurrentUser() == null) {
+//            manager = managerService.getManagerById(1);
+//        } else {
+//            manager = managerService.getManagerByUserId(userService.getCurrentUser().getId());
+//        }
+        try {
+            manager = managerService.getManagerByUserId(userService.getCurrentUser().getId());
+        } catch (Exception e) {
+            manager = managerService.getManagerById(1);
+        }
+
+
+
         Task task = Task.builder()
                 .address(taskDto.getAddress())
                 .date(taskDto.getDate())
@@ -51,7 +69,7 @@ public class TaskServiceImpl implements TaskService {
                 .status(statusService.getStatusById(taskDto.getStatusId()))
                 .category(categoryService.getCategoryById(taskDto.getCategoryId()))
                 .priority(priorityService.getPriorityById(taskDto.getPriorityId()))
-                .manager(managerService.getManagerById(taskDto.getManagerId()))
+                .manager(manager)
                 .client(clientService.getClientById(taskDto.getClientId()))
                 .build();
 
@@ -60,8 +78,13 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getAllTasks() {
-        return taskRepository.findAllByOrderByDateDesc();
+    public List<Task> getActiveTasks(final Long categoryId) {
+        return taskRepository.findTasksByCompletedFalseAndCategoryIdOrderByDateDesc(categoryId);
+    }
+
+    @Override
+    public List<Task> getArchiveTasks(final Long categoryId) {
+        return taskRepository.findTasksByCompletedTrueAndCategoryIdOrderByDateDesc(categoryId);
     }
 
     @Override
@@ -93,7 +116,6 @@ public class TaskServiceImpl implements TaskService {
         taskToUpdate.setStatus(statusService.getStatusById(taskDto.getStatusId()));
         taskToUpdate.setCategory(categoryService.getCategoryById(taskDto.getCategoryId()));
         taskToUpdate.setPriority(priorityService.getPriorityById(taskDto.getPriorityId()));
-        taskToUpdate.setManager(managerService.getManagerById(taskDto.getManagerId()));
         taskToUpdate.setClient(clientService.getClientById(taskDto.getClientId()));
 
         return taskRepository.save(taskToUpdate);

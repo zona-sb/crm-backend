@@ -1,6 +1,9 @@
 package ru.zonasb.backend.service.task;
 
+import com.querydsl.core.types.Predicate;
 import lombok.AllArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -50,8 +53,8 @@ public class PriorityServiceImpl implements PriorityService {
     }
 
     @Override
-    public Iterable<Priority> getAllPriorities(Predicate predicate) {
-        return priorityRepository.findAll(predicate);
+    public Page<Priority> getAllPriorities(Predicate predicate, Pageable pageable) {
+        return priorityRepository.findAll(predicate, pageable);
     }
 
     @Override
@@ -104,5 +107,23 @@ public class PriorityServiceImpl implements PriorityService {
 
         priorityRepository.deleteById(id);
     }
+
+/*    private List<Priority> filtrationPriorities(List<Priority> priorities,
+                                                PriorityFiltrationDto priorityFiltrationDto) {
+        List<Predicate<Priority>> predicates = new ArrayList<>();
+        if (priorityFiltrationDto.getTitle() != null && !priorityFiltrationDto.getTitle().isEmpty()) {
+            Predicate<Priority> predicateTitle = x -> x.getTitle().contains(priorityFiltrationDto.getTitle());
+            predicates.add(predicateTitle);
+        }
+        if (priorityFiltrationDto.getWeight() != null) {
+            Predicate<Priority> predicateWeight = x -> Objects.equals(priorityFiltrationDto.getWeight(), x.getWeight());
+            predicates.add(predicateWeight);
+        }
+        if (priorityFiltrationDto.getColor() != null && !priorityFiltrationDto.getColor().isEmpty()) {
+            Predicate<Priority> predicateColor = x -> Objects.equals(x.getColor(), priorityFiltrationDto.getColor());
+            predicates.add(predicateColor);
+        }
+        return priorities.stream().filter(x -> predicates.stream().allMatch(predicate -> predicate.test(x))).toList();
+    }*/
 
 }
