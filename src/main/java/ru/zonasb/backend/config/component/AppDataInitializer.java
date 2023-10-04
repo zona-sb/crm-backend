@@ -144,7 +144,7 @@ public class AppDataInitializer {
             for (long i = 1; i <= 75; i++) {
                 TaskDto taskDto = TaskDto.builder()
                         .address("address")
-                        .date(LocalDate.parse("2023-10-03"))
+                        .date(LocalDate.parse("2023-10-10"))
                         .operationNumber((int) i)
                         .comment("comment")
                         .completed(false)
