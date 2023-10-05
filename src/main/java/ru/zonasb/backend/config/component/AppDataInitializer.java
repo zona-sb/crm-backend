@@ -238,31 +238,6 @@ public class AppDataInitializer {
                 }
 
             }
-            statusId = 0;
-            priorityId = 0;
-            for (long i = 1; i <= 15; i++) {
-                statusId++;
-                priorityId++;
-                TaskDto taskDto = TaskDto.builder()
-                        .address("address")
-                        .date(LocalDate.parse("2023-10-10"))
-                        .operationNumber((int) i)
-                        .comment("comment")
-                        .completed(false)
-                        .statusId(statusId)
-                        .priorityId(priorityId)
-                        .categoryId(5L)
-                        .clientId(1L)
-                        .build();
-                taskService.createNewTask(taskDto);
-                if (statusId == 5) {
-                    statusId = 0;
-                }
-                if (priorityId == 3) {
-                    priorityId = 0;
-                }
-
-            }
         }
     }
 
