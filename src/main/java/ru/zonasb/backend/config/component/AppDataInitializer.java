@@ -120,28 +120,25 @@ public class AppDataInitializer {
         if (priorityRepository.findAll().isEmpty()) {
             PriorityDto priorityDto1 = PriorityDto.builder()
                     .title("Высокий")
-                    .color("#541212")
+                    .color("#FF0000")
                     .weight(1)
                     .build();
             priorityService.createNewPriority(priorityDto1);
             PriorityDto priorityDto2 = PriorityDto.builder()
                     .title("Средний")
-                    .color("#d8ce46")
+                    .color("#FFF352")
                     .weight(2)
                     .build();
             priorityService.createNewPriority(priorityDto2);
             PriorityDto priorityDto3 = PriorityDto.builder()
                     .title("Низкий")
-                    .color("#46d850")
+                    .color("#00FF11")
                     .weight(3)
                     .build();
             priorityService.createNewPriority(priorityDto3);
         }
         if (taskRepository.findAll().isEmpty()) {
-
-
-
-            for (long i = 1; i <= 75; i++) {
+            for (long i = 1; i <= 15; i++) {
                 TaskDto taskDto = TaskDto.builder()
                         .address("address")
                         .date(LocalDate.parse("2023-10-10"))
@@ -150,7 +147,49 @@ public class AppDataInitializer {
                         .completed(false)
                         .statusId(i % 5 + 1)
                         .priorityId(i % 3 + 1)
-                        .categoryId(i % 4 + 1)
+                        .categoryId(1L)
+                        .clientId(1L)
+                        .build();
+                taskService.createNewTask(taskDto);
+            }
+            for (long i = 1; i <= 15; i++) {
+                TaskDto taskDto = TaskDto.builder()
+                        .address("address")
+                        .date(LocalDate.parse("2023-10-10"))
+                        .operationNumber((int) i)
+                        .comment("comment")
+                        .completed(false)
+                        .statusId(i % 5 + 1)
+                        .priorityId(i % 3 + 1)
+                        .categoryId(2L)
+                        .clientId(1L)
+                        .build();
+                taskService.createNewTask(taskDto);
+            }
+            for (long i = 1; i <= 15; i++) {
+                TaskDto taskDto = TaskDto.builder()
+                        .address("address")
+                        .date(LocalDate.parse("2023-10-10"))
+                        .operationNumber((int) i)
+                        .comment("comment")
+                        .completed(false)
+                        .statusId(i % 5 + 1)
+                        .priorityId(i % 3 + 1)
+                        .categoryId(3L)
+                        .clientId(1L)
+                        .build();
+                taskService.createNewTask(taskDto);
+            }
+            for (long i = 1; i <= 15; i++) {
+                TaskDto taskDto = TaskDto.builder()
+                        .address("address")
+                        .date(LocalDate.parse("2023-10-10"))
+                        .operationNumber((int) i)
+                        .comment("comment")
+                        .completed(false)
+                        .statusId(i % 5 + 1)
+                        .priorityId(i % 3 + 1)
+                        .categoryId(4L)
                         .clientId(1L)
                         .build();
                 taskService.createNewTask(taskDto);

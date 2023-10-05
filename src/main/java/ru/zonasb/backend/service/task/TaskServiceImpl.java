@@ -84,7 +84,7 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public List<Task> getArchiveTasks(final Long categoryId) {
-        return taskRepository.findTasksByCompletedTrueAndCategoryIdOrderByDateDesc(categoryId);
+        return taskRepository.findTasksByCompletedTrueAndCategoryIdOrderByPriorityDesc(categoryId);
     }
 
     @Override

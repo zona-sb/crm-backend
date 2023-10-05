@@ -42,7 +42,7 @@ public class Task {
     @Column(name = "communication_date")
     private LocalDate date;
 
-    @Column(name = "operation_number", unique = true)
+    @Column(name = "operation_number")
     private Integer operationNumber;
 
     @Column(name = "comment")
