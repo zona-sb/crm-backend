@@ -42,10 +42,6 @@ public class TaskServiceImpl implements TaskService {
             throw new IllegalArgumentException("The date must be no earlier than today");
         }
 
-        if (taskRepository.findTaskByOperationNumber(taskDto.getOperationNumber()).isPresent()) {
-            throw new IllegalArgumentException("Task with this operation number is already exist");
-        }
-
         Manager manager;
 //        if (userService.getCurrentUser() == null) {
 //            manager = managerService.getManagerById(1);
@@ -103,13 +99,8 @@ public class TaskServiceImpl implements TaskService {
         }
 
         Task taskToUpdate = getTaskById(id);
-
         taskToUpdate.setAddress(taskDto.getAddress());
         taskToUpdate.setDate(taskDto.getDate());
-        if (!taskToUpdate.getOperationNumber().equals(taskDto.getOperationNumber())
-                && taskRepository.findTaskByOperationNumber(taskDto.getOperationNumber()).isPresent()) {
-            throw new IllegalArgumentException("Task with this operation number is already exist");
-        }
         taskToUpdate.setOperationNumber(taskDto.getOperationNumber());
         taskToUpdate.setComment(taskDto.getComment());
         taskToUpdate.setCompleted(taskDto.getCompleted());
