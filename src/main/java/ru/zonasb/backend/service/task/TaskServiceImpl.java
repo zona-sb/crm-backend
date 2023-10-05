@@ -74,26 +74,9 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
-    public List<Task> getActiveTasks(final Long categoryId) {
-        return taskRepository.findTasksByCompletedFalseAndCategoryIdOrderByDateDesc(categoryId);
-    }
-
-    @Override
-    public List<Task> getArchiveTasks(final Long categoryId) {
-        return taskRepository.findTasksByCompletedTrueAndCategoryIdOrderByPriorityDesc(categoryId);
-    }
-
-    @Override
-    public Task getTaskById(final Long id) {
-        return taskRepository.findById(id)
-                .orElseThrow(() -> new NoSuchElementException("Task with id " + id + " is not found"));
-    }
-
-    @Override
     public Task updateTask(final Long id, final TaskDto taskDto) {
 
         LocalDate today = LocalDate.now();
-
         if (taskDto.getDate().isBefore(today)) {
             throw new IllegalArgumentException("The date must be no earlier than today");
         }
@@ -110,6 +93,22 @@ public class TaskServiceImpl implements TaskService {
         taskToUpdate.setClient(clientService.getClientById(taskDto.getClientId()));
 
         return taskRepository.save(taskToUpdate);
+    }
+
+    @Override
+    public List<Task> getActiveTasks(final Long categoryId) {
+        return taskRepository.findTasksByCompletedFalseAndCategoryIdOrderByDateDesc(categoryId);
+    }
+
+    @Override
+    public List<Task> getArchiveTasks(final Long categoryId) {
+        return taskRepository.findTasksByCompletedTrueAndCategoryIdOrderByPriorityDesc(categoryId);
+    }
+
+    @Override
+    public Task getTaskById(final Long id) {
+        return taskRepository.findById(id)
+                .orElseThrow(() -> new NoSuchElementException("Task with id " + id + " is not found"));
     }
 
     @Override
