@@ -163,7 +163,7 @@ public class AppDataInitializer {
                 }
 
             }
-            statusId = 0;
+            statusId = 5;
             priorityId = 0;
             for (long i = 1; i <= 15; i++) {
                 statusId++;
@@ -180,15 +180,15 @@ public class AppDataInitializer {
                         .clientId(1L)
                         .build();
                 taskService.createNewTask(taskDto);
-                if (statusId == 5) {
-                    statusId = 0;
+                if (statusId == 10) {
+                    statusId = 5;
                 }
                 if (priorityId == 3) {
                     priorityId = 0;
                 }
 
             }
-            statusId = 0;
+            statusId = 10;
             priorityId = 0;
             for (long i = 1; i <= 15; i++) {
                 statusId++;
@@ -205,15 +205,15 @@ public class AppDataInitializer {
                         .clientId(1L)
                         .build();
                 taskService.createNewTask(taskDto);
-                if (statusId == 5) {
-                    statusId = 0;
+                if (statusId == 15) {
+                    statusId = 10;
                 }
                 if (priorityId == 3) {
                     priorityId = 0;
                 }
 
             }
-            statusId = 0;
+            statusId = 15;
             priorityId = 0;
             for (long i = 1; i <= 15; i++) {
                 statusId++;
@@ -230,8 +230,8 @@ public class AppDataInitializer {
                         .clientId(1L)
                         .build();
                 taskService.createNewTask(taskDto);
-                if (statusId == 5) {
-                    statusId = 0;
+                if (statusId == 20) {
+                    statusId = 15;
                 }
                 if (priorityId == 3) {
                     priorityId = 0;
