@@ -15,7 +15,6 @@ import ru.zonasb.backend.service.task.interfase.PriorityService;
 import ru.zonasb.backend.service.task.interfase.StatusService;
 import ru.zonasb.backend.service.task.interfase.TaskService;
 
-import java.time.LocalDate;
 import java.util.List;
 import java.util.NoSuchElementException;
 
@@ -35,13 +34,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task createNewTask(final TaskDto taskDto) {
-
-        LocalDate today = LocalDate.now();
-
-        if (taskDto.getDate().isBefore(today)) {
-            throw new IllegalArgumentException("The date must be no earlier than today");
-        }
-
         Manager manager;
 //        if (userService.getCurrentUser() == null) {
 //            manager = managerService.getManagerById(1);
@@ -75,12 +67,6 @@ public class TaskServiceImpl implements TaskService {
 
     @Override
     public Task updateTask(final Long id, final TaskDto taskDto) {
-
-        LocalDate today = LocalDate.now();
-        if (taskDto.getDate().isBefore(today)) {
-            throw new IllegalArgumentException("The date must be no earlier than today");
-        }
-
         Task taskToUpdate = getTaskById(id);
         taskToUpdate.setAddress(taskDto.getAddress());
         taskToUpdate.setDate(taskDto.getDate());
